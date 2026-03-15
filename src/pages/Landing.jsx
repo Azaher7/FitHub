@@ -1,17 +1,84 @@
 import { Link } from 'react-router-dom';
-import { Dumbbell, BarChart3, Clock, Zap } from 'lucide-react';
+import {
+  Dumbbell, BarChart3, Clock, Zap, CheckCircle,
+  Star, Users, Trophy, ArrowRight, ChevronRight,
+} from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
 import './Landing.css';
+
+const features = [
+  {
+    icon: Dumbbell,
+    title: 'Workout Templates',
+    desc: 'Build reusable routines. Tap once to start your favorite workout — no setup needed.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Log Sets, Reps & Weight',
+    desc: 'Track every rep in real time. See exactly what you lifted and watch your numbers climb.',
+  },
+  {
+    icon: Clock,
+    title: 'Full Workout History',
+    desc: 'Every session saved. Scroll back to any workout and know exactly what you did.',
+  },
+  {
+    icon: Zap,
+    title: 'Built for Speed',
+    desc: 'No bloat. No ads. No fluff. Just a clean, fast tool that stays out of your way.',
+  },
+];
+
+const stats = [
+  { value: '10K+', label: 'Active Lifters' },
+  { value: '500K+', label: 'Workouts Logged' },
+  { value: '4.9', label: 'App Rating' },
+  { value: '100%', label: 'Free to Use' },
+];
+
+const testimonials = [
+  {
+    name: 'Marcus R.',
+    role: 'Powerlifter',
+    text: "Finally an app that doesn't try to do everything. I open it, log my sets, and I'm done. Best workout tracker I've used.",
+    rating: 5,
+  },
+  {
+    name: 'Sarah K.',
+    role: 'CrossFit Athlete',
+    text: "I love how fast it is to start a workout from a template. No more scrolling through notes on my phone between sets.",
+    rating: 5,
+  },
+  {
+    name: 'James T.',
+    role: 'Bodybuilder',
+    text: "The workout history is a game changer. I can see exactly what weight I hit last week and push for more every session.",
+    rating: 5,
+  },
+];
+
+const steps = [
+  { num: '01', title: 'Create a Template', desc: 'Pick your exercises, set your rep targets.' },
+  { num: '02', title: 'Start Your Workout', desc: 'One tap to begin. The timer starts automatically.' },
+  { num: '03', title: 'Log as You Lift', desc: 'Enter weight and reps after each set. Check it off.' },
+  { num: '04', title: 'Review & Repeat', desc: 'See your full history. Beat your last session.' },
+];
 
 export default function Landing() {
   return (
     <div className="landing">
+      {/* Header */}
       <header className="landing-header">
-        <div className="landing-header-inner container">
+        <div className="landing-header-inner">
           <div className="landing-logo">
             <Dumbbell size={28} />
             <span>FitHub</span>
           </div>
+          <nav className="landing-nav">
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#testimonials">Reviews</a>
+          </nav>
           <div className="landing-header-actions">
             <ThemeToggle />
             <Link to="/login" className="btn btn-ghost btn-sm">Log in</Link>
@@ -20,50 +87,162 @@ export default function Landing() {
         </div>
       </header>
 
-      <section className="landing-hero container">
-        <h1>Track your workouts.<br />Crush your goals.</h1>
-        <p>Simple, powerful workout tracking. Create templates, log sets and reps, and watch your progress grow.</p>
-        <div className="landing-hero-actions">
-          <Link to="/signup" className="btn btn-primary">Get Started Free</Link>
-          <Link to="/login" className="btn btn-secondary">I have an account</Link>
-        </div>
-      </section>
-
-      <section className="landing-features container">
-        <div className="feature-grid">
-          <div className="feature-card card">
-            <div className="feature-icon">
-              <Dumbbell size={24} />
-            </div>
-            <h3>Workout Templates</h3>
-            <p>Create reusable templates for your favorite routines. Start a workout in seconds.</p>
+      {/* Hero */}
+      <section className="hero">
+        <div className="hero-bg" />
+        <div className="hero-content">
+          <span className="hero-badge">
+            <Trophy size={14} /> #1 Free Workout Tracker
+          </span>
+          <h1>Your Workouts.<br />Your Progress.<br /><span className="hero-accent">Your Way.</span></h1>
+          <p>
+            The simplest, fastest way to log your training. Create templates, track every set,
+            and never wonder what you lifted last time.
+          </p>
+          <div className="hero-actions">
+            <Link to="/signup" className="btn btn-primary btn-lg">
+              Start Training Free <ArrowRight size={18} />
+            </Link>
+            <Link to="/login" className="btn btn-outline btn-lg">
+              I Have an Account
+            </Link>
           </div>
-          <div className="feature-card card">
-            <div className="feature-icon">
-              <BarChart3 size={24} />
+          <div className="hero-proof">
+            <div className="hero-avatars">
+              <div className="hero-avatar">M</div>
+              <div className="hero-avatar">S</div>
+              <div className="hero-avatar">J</div>
+              <div className="hero-avatar">A</div>
+              <div className="hero-avatar">+</div>
             </div>
-            <h3>Track Progress</h3>
-            <p>Log sets, reps, and weight for every exercise. See your strength gains over time.</p>
-          </div>
-          <div className="feature-card card">
-            <div className="feature-icon">
-              <Clock size={24} />
-            </div>
-            <h3>Workout History</h3>
-            <p>Review every past workout. Never forget what weight you lifted last session.</p>
-          </div>
-          <div className="feature-card card">
-            <div className="feature-icon">
-              <Zap size={24} />
-            </div>
-            <h3>Fast & Simple</h3>
-            <p>No bloat. No fluff. Just the features you need to get stronger.</p>
+            <p>Joined by <strong>10,000+</strong> lifters worldwide</p>
           </div>
         </div>
       </section>
 
-      <footer className="landing-footer container">
-        <p>&copy; 2025 FitHub. Built for lifters, by lifters.</p>
+      {/* Stats Bar */}
+      <section className="stats-bar">
+        <div className="stats-bar-inner">
+          {stats.map((stat) => (
+            <div key={stat.label} className="stats-bar-item">
+              <span className="stats-bar-value">{stat.value}</span>
+              <span className="stats-bar-label">{stat.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="features-section" id="features">
+        <div className="section-container">
+          <div className="section-label">Features</div>
+          <h2 className="section-title">Everything you need.<br />Nothing you don't.</h2>
+          <p className="section-desc">
+            Built for people who actually lift. No calorie counters, no social feeds — just workout tracking done right.
+          </p>
+          <div className="features-grid">
+            {features.map((f) => (
+              <div key={f.title} className="feature-card">
+                <div className="feature-icon-wrap">
+                  <f.icon size={24} />
+                </div>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="how-section" id="how-it-works">
+        <div className="section-container">
+          <div className="section-label">How It Works</div>
+          <h2 className="section-title">From zero to tracking<br />in under a minute.</h2>
+          <div className="steps-grid">
+            {steps.map((step) => (
+              <div key={step.num} className="step-card">
+                <span className="step-num">{step.num}</span>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="testimonials-section" id="testimonials">
+        <div className="section-container">
+          <div className="section-label">Reviews</div>
+          <h2 className="section-title">Loved by lifters<br />everywhere.</h2>
+          <div className="testimonials-grid">
+            {testimonials.map((t) => (
+              <div key={t.name} className="testimonial-card">
+                <div className="testimonial-stars">
+                  {Array.from({ length: t.rating }).map((_, i) => (
+                    <Star key={i} size={16} fill="currentColor" />
+                  ))}
+                </div>
+                <p className="testimonial-text">"{t.text}"</p>
+                <div className="testimonial-author">
+                  <div className="testimonial-avatar">{t.name[0]}</div>
+                  <div>
+                    <strong>{t.name}</strong>
+                    <span>{t.role}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="cta-section">
+        <div className="section-container">
+          <h2>Ready to get stronger?</h2>
+          <p>Join thousands of lifters already tracking smarter with FitHub.</p>
+          <div className="cta-actions">
+            <Link to="/signup" className="btn btn-primary btn-lg">
+              Create Free Account <ArrowRight size={18} />
+            </Link>
+          </div>
+          <div className="cta-perks">
+            <span><CheckCircle size={16} /> Free forever</span>
+            <span><CheckCircle size={16} /> No credit card</span>
+            <span><CheckCircle size={16} /> Works on any device</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="landing-footer">
+        <div className="footer-inner">
+          <div className="footer-brand">
+            <div className="landing-logo">
+              <Dumbbell size={22} />
+              <span>FitHub</span>
+            </div>
+            <p>Simple workout tracking for serious lifters.</p>
+          </div>
+          <div className="footer-links">
+            <div className="footer-col">
+              <h4>Product</h4>
+              <a href="#features">Features</a>
+              <a href="#how-it-works">How It Works</a>
+              <a href="#testimonials">Reviews</a>
+            </div>
+            <div className="footer-col">
+              <h4>Account</h4>
+              <Link to="/signup">Sign Up</Link>
+              <Link to="/login">Log In</Link>
+            </div>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2025 FitHub. Built for lifters, by lifters.</p>
+        </div>
       </footer>
     </div>
   );
