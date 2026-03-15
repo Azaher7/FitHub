@@ -1,0 +1,51 @@
+.exercise-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.exercise-card {
+  padding: var(--space-md);
+}
+
+.exercise-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.drag-handle {
+  color: var(--color-text-muted);
+  cursor: grab;
+  flex-shrink: 0;
+}
+
+.exercise-card-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.exercise-card-title h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.exercise-card-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.template-actions {
+  margin-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.template-actions .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
