@@ -1,22 +1,22 @@
 :root {
-  /* Colors */
-  --color-primary: #4F46E5;
-  --color-primary-hover: #4338CA;
-  --color-primary-light: #EEF2FF;
-  --color-secondary: #10B981;
-  --color-secondary-hover: #059669;
-  --color-danger: #EF4444;
-  --color-danger-hover: #DC2626;
-  --color-warning: #F59E0B;
+  /* Colors - Hevy-inspired blue theme */
+  --color-primary: #2196F3;
+  --color-primary-hover: #1976D2;
+  --color-primary-light: #E3F2FD;
+  --color-secondary: #4CAF50;
+  --color-secondary-hover: #388E3C;
+  --color-danger: #F44336;
+  --color-danger-hover: #D32F2F;
+  --color-warning: #FF9800;
 
-  /* Neutrals */
-  --color-bg: #F9FAFB;
+  /* Neutrals - Clean white */
+  --color-bg: #F5F5F5;
   --color-surface: #FFFFFF;
-  --color-border: #E5E7EB;
-  --color-border-light: #F3F4F6;
-  --color-text: #111827;
-  --color-text-secondary: #6B7280;
-  --color-text-muted: #9CA3AF;
+  --color-border: #E0E0E0;
+  --color-border-light: #F0F0F0;
+  --color-text: #212121;
+  --color-text-secondary: #757575;
+  --color-text-muted: #9E9E9E;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -56,26 +56,26 @@
   --bottom-nav-height: 64px;
 }
 
-/* Dark Mode */
+/* Dark Mode - Hevy-style dark with blue accents */
 [data-theme="dark"] {
-  --color-primary: #818CF8;
-  --color-primary-hover: #6366F1;
-  --color-primary-light: rgba(129, 140, 248, 0.15);
-  --color-secondary: #34D399;
-  --color-secondary-hover: #10B981;
-  --color-danger: #F87171;
-  --color-danger-hover: #EF4444;
-  --color-warning: #FBBF24;
+  --color-primary: #42A5F5;
+  --color-primary-hover: #2196F3;
+  --color-primary-light: rgba(66, 165, 245, 0.12);
+  --color-secondary: #66BB6A;
+  --color-secondary-hover: #4CAF50;
+  --color-danger: #EF5350;
+  --color-danger-hover: #F44336;
+  --color-warning: #FFA726;
 
-  --color-bg: #0F172A;
-  --color-surface: #1E293B;
-  --color-border: #334155;
-  --color-border-light: #1E293B;
-  --color-text: #F1F5F9;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #64748B;
+  --color-bg: #121212;
+  --color-surface: #1E1E1E;
+  --color-border: #2C2C2C;
+  --color-border-light: #252525;
+  --color-text: #FFFFFF;
+  --color-text-secondary: #B0B0B0;
+  --color-text-muted: #757575;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
 }
