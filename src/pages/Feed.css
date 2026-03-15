@@ -1,0 +1,480 @@
+/* ========================================
+   SOCIAL FEED PAGE
+   ======================================== */
+
+/* ---------- Post Composer ---------- */
+.feed-composer {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-lg);
+}
+
+.feed-composer-top {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  align-items: flex-start;
+}
+
+.feed-composer-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  resize: none;
+  padding: 6px 0;
+  line-height: 1.5;
+  font-family: var(--font-family);
+}
+
+.feed-composer-input:focus {
+  outline: none;
+}
+
+.feed-composer-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.feed-composer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+  background: var(--color-bg);
+}
+
+/* Privacy selector */
+.feed-composer-privacy {
+  position: relative;
+}
+
+.feed-privacy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.feed-privacy-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.feed-privacy-dropdown {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 50;
+  min-width: 210px;
+  overflow: hidden;
+}
+
+.feed-privacy-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.feed-privacy-option:hover {
+  background: var(--color-border-light);
+}
+
+.feed-privacy-option.active {
+  color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.feed-privacy-option div {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-privacy-option-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.feed-privacy-option.active .feed-privacy-option-label {
+  color: var(--color-primary);
+}
+
+.feed-privacy-option-desc {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Post button */
+.feed-post-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border: none;
+  cursor: not-allowed;
+  transition: all 0.15s;
+}
+
+.feed-post-btn.active {
+  background: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+.feed-post-btn.active:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ---------- Featured Users (Horizontal Scroll) ---------- */
+.feed-featured {
+  margin-bottom: var(--space-lg);
+}
+
+.feed-section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.feed-section-header h2 {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+}
+
+.feed-section-icon {
+  color: var(--color-warning);
+}
+
+.feed-activity-header {
+  margin-top: var(--space-xs);
+}
+
+.feed-featured-scroll {
+  display: flex;
+  gap: var(--space-sm);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.feed-featured-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.feed-featured-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 90px;
+  padding: var(--space-md) var(--space-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.feed-featured-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px;
+}
+
+.feed-featured-stat {
+  font-size: 10px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- Feed Posts ---------- */
+.feed-posts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.feed-post {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.feed-post-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+}
+
+.feed-post-user {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.feed-post-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.feed-post-meta {
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+/* Activity Tags */
+.feed-post-activity {
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.feed-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.feed-tag.workout {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.feed-tag.pr {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--color-warning);
+}
+
+[data-theme="dark"] .feed-tag.pr {
+  background: rgba(251, 191, 36, 0.15);
+}
+
+.feed-tag.milestone {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--color-secondary);
+}
+
+[data-theme="dark"] .feed-tag.milestone {
+  background: rgba(52, 211, 153, 0.15);
+}
+
+/* Caption */
+.feed-post-caption {
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* Workout Summary Card */
+.feed-workout-card {
+  margin: 0 var(--space-md) var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+}
+
+.feed-workout-exercises {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: var(--space-sm);
+}
+
+.feed-workout-ex {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.feed-workout-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  column-gap: var(--space-md);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.feed-workout-stats span {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Post Actions */
+.feed-post-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.feed-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.feed-action-btn:hover {
+  background: var(--color-border-light);
+  color: var(--color-text-secondary);
+}
+
+.feed-action-btn.liked {
+  color: #EF4444;
+}
+
+.feed-action-btn.liked:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* ---------- Suggested Users ---------- */
+.feed-suggested {
+  margin-bottom: var(--space-lg);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.feed-suggested .feed-section-header {
+  padding: var(--space-md) var(--space-md) 0;
+}
+
+.feed-suggested-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-suggested-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-top: 1px solid var(--color-border-light);
+}
+
+.feed-suggested-card:first-child {
+  border-top: none;
+}
+
+.feed-suggested-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.feed-suggested-name {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.feed-suggested-bio {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feed-suggested-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.feed-follow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.feed-follow-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.feed-follow-btn.following {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.feed-follow-btn.following:hover {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.06);
+}

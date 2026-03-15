@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Dumbbell, ClipboardList, User } from 'lucide-react';
+import { Home, Dumbbell, ClipboardList, User, Users } from 'lucide-react';
 import './BottomNav.css';
 
 export default function BottomNav() {
@@ -8,6 +8,10 @@ export default function BottomNav() {
       <NavLink to="/dashboard" className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}>
         <Home size={22} />
         <span>Home</span>
+      </NavLink>
+      <NavLink to="/feed" className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}>
+        <Users size={22} />
+        <span>Feed</span>
       </NavLink>
       <NavLink to="/templates" className={({ isActive }) => `bottom-nav-item ${isActive ? 'active' : ''}`}>
         <Dumbbell size={22} />

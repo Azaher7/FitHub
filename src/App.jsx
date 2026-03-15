@@ -10,6 +10,7 @@ import CreateTemplate from './pages/CreateTemplate';
 import WorkoutDetail from './pages/WorkoutDetail';
 import ActiveWorkout from './pages/ActiveWorkout';
 import History from './pages/History';
+import Feed from './pages/Feed';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 
@@ -29,6 +30,7 @@ export default function App() {
         {/* App routes (authenticated) */}
         <Route element={<AppLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/feed" element={<Feed />} />
           <Route path="/templates" element={<Templates />} />
           <Route path="/templates/new" element={<CreateTemplate />} />
           <Route path="/templates/:id" element={<WorkoutDetail />} />
