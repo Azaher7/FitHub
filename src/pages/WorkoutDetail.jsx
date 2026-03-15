@@ -1,7 +1,20 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Clock, Dumbbell, Calendar } from 'lucide-react';
+import { ArrowLeft, Clock, Dumbbell, Weight, TrendingUp, Trophy, Calendar } from 'lucide-react';
 import { mockWorkoutHistory } from '../data/mockData';
 import './WorkoutDetail.css';
+
+function getBestSet(sets) {
+  let best = null;
+  let bestVolume = 0;
+  sets.forEach((set, i) => {
+    const vol = set.reps * set.weight;
+    if (vol > bestVolume) {
+      bestVolume = vol;
+      best = i;
+    }
+  });
+  return best;
+}
 
 export default function WorkoutDetail() {
   const { id } = useParams();
@@ -12,9 +25,15 @@ export default function WorkoutDetail() {
   if (!workout) {
     return (
       <div className="page">
-        <div className="empty-state">
-          <p>Workout not found.</p>
-          <button className="btn btn-primary btn-sm" onClick={() => navigate('/history')} style={{ width: 'auto' }}>
+        <div className="hist-empty">
+          <div className="hist-empty-icon"><Dumbbell size={36} /></div>
+          <h3>Workout not found</h3>
+          <p>This workout may have been deleted</p>
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={() => navigate('/history')}
+            style={{ width: 'auto', marginTop: 'var(--space-md)' }}
+          >
             Go to History
           </button>
         </div>
@@ -23,67 +42,107 @@ export default function WorkoutDetail() {
   }
 
   const totalSets = workout.exercises.reduce((sum, ex) => sum + ex.sets.length, 0);
+  const totalReps = workout.exercises.reduce(
+    (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps, 0), 0
+  );
   const totalVolume = workout.exercises.reduce(
-    (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps * set.weight, 0),
-    0
+    (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps * set.weight, 0), 0
   );
 
   return (
     <div className="page">
-      <div className="page-header">
-        <button className="btn btn-ghost btn-sm" onClick={() => navigate(-1)} style={{ width: 'auto', marginBottom: 'var(--space-md)' }}>
-          <ArrowLeft size={18} /> Back
+      {/* Header */}
+      <div className="wd-header">
+        <button className="wd-back" onClick={() => navigate(-1)}>
+          <ArrowLeft size={20} />
         </button>
-        <h1 className="page-title">{workout.templateName}</h1>
-        <p className="page-subtitle">
-          {new Date(workout.date).toLocaleDateString('en-US', {
-            weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-          })}
-        </p>
+        <div className="wd-header-text">
+          <h1>{workout.templateName}</h1>
+          <p>
+            <Calendar size={12} />
+            {new Date(workout.date).toLocaleDateString('en-US', {
+              weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+            })}
+          </p>
+        </div>
       </div>
 
-      <div className="workout-summary">
-        <div className="workout-summary-item">
+      {/* Summary Cards */}
+      <div className="wd-summary">
+        <div className="wd-summary-card">
           <Clock size={16} />
-          <span>{workout.duration} min</span>
+          <span className="wd-summary-value">{workout.duration}</span>
+          <span className="wd-summary-label">minutes</span>
         </div>
-        <div className="workout-summary-item">
+        <div className="wd-summary-card">
           <Dumbbell size={16} />
-          <span>{workout.exercises.length} exercises</span>
+          <span className="wd-summary-value">{workout.exercises.length}</span>
+          <span className="wd-summary-label">exercises</span>
         </div>
-        <div className="workout-summary-item">
-          <Calendar size={16} />
-          <span>{totalSets} sets</span>
+        <div className="wd-summary-card">
+          <TrendingUp size={16} />
+          <span className="wd-summary-value">{totalSets}</span>
+          <span className="wd-summary-label">sets</span>
+        </div>
+        <div className="wd-summary-card">
+          <Trophy size={16} />
+          <span className="wd-summary-value">{totalReps}</span>
+          <span className="wd-summary-label">reps</span>
         </div>
       </div>
 
+      {/* Volume Banner */}
       {totalVolume > 0 && (
-        <div className="card workout-volume">
-          <span className="volume-label">Total Volume</span>
-          <span className="volume-value">{totalVolume.toLocaleString()} lbs</span>
+        <div className="wd-volume">
+          <div className="wd-volume-left">
+            <Weight size={18} />
+            <span>Total Volume</span>
+          </div>
+          <span className="wd-volume-value">{totalVolume.toLocaleString()} lbs</span>
         </div>
       )}
 
-      <div className="workout-exercises">
-        {workout.exercises.map((exercise, i) => (
-          <div key={i} className="workout-exercise card">
-            <h3>{exercise.name}</h3>
-            <div className="sets-table">
-              <div className="sets-table-header">
-                <span>Set</span>
-                <span>Reps</span>
-                <span>Weight</span>
+      {/* Exercises */}
+      <div className="wd-exercises">
+        {workout.exercises.map((exercise, i) => {
+          const bestIdx = getBestSet(exercise.sets);
+          return (
+            <div key={i} className="wd-exercise">
+              <div className="wd-exercise-header">
+                <div className="wd-exercise-num">{i + 1}</div>
+                <h3>{exercise.name}</h3>
               </div>
-              {exercise.sets.map((set, j) => (
-                <div key={j} className="sets-table-row">
-                  <span>{j + 1}</span>
-                  <span>{set.reps}</span>
-                  <span>{set.weight > 0 ? `${set.weight} lbs` : 'BW'}</span>
+              <div className="wd-sets">
+                <div className="wd-sets-header">
+                  <span className="wd-col-set">Set</span>
+                  <span className="wd-col-reps">Reps</span>
+                  <span className="wd-col-weight">Weight</span>
+                  <span className="wd-col-vol">Volume</span>
                 </div>
-              ))}
+                {exercise.sets.map((set, j) => {
+                  const vol = set.reps * set.weight;
+                  return (
+                    <div key={j} className={`wd-set-row ${j === bestIdx && set.weight > 0 ? 'best' : ''}`}>
+                      <span className="wd-col-set">
+                        <span className="wd-set-badge">{j + 1}</span>
+                      </span>
+                      <span className="wd-col-reps wd-set-value">{set.reps}</span>
+                      <span className="wd-col-weight wd-set-value">
+                        {set.weight > 0 ? `${set.weight} lbs` : 'BW'}
+                      </span>
+                      <span className="wd-col-vol wd-set-vol">
+                        {vol > 0 ? `${vol.toLocaleString()}` : '—'}
+                        {j === bestIdx && set.weight > 0 && (
+                          <Trophy size={11} className="wd-best-icon" />
+                        )}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

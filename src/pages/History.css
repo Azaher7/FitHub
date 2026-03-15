@@ -1,81 +1,247 @@
-.history-groups {
+/* ========================================
+   WORKOUT HISTORY PAGE
+   ======================================== */
+
+/* ---------- Summary Stats ---------- */
+.hist-stats {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.hist-stat {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary);
+}
+
+.hist-stat div {
+  display: flex;
+  flex-direction: column;
+}
+
+.hist-stat-value {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.hist-stat-label {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ---------- Search ---------- */
+.hist-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-xl);
+  color: var(--color-text-muted);
+  transition: border-color 0.2s;
+}
+
+.hist-search:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.hist-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  padding: var(--space-xs) 0;
+}
+
+.hist-search-input:focus {
+  outline: none;
+}
+
+.hist-search-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Month Groups ---------- */
+.hist-groups {
   display: flex;
   flex-direction: column;
   gap: var(--space-xl);
 }
 
-.history-month {
-  font-size: var(--font-size-sm);
-  font-weight: 600;
-  color: var(--color-text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.hist-month-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   margin-bottom: var(--space-md);
+  color: var(--color-primary);
 }
 
-.history-list {
+.hist-month-header h2 {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  flex: 1;
+}
+
+.hist-month-count {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* ---------- Workout Cards ---------- */
+.hist-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
 
-.history-card {
+.hist-card {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--space-md) var(--space-lg);
-  transition: box-shadow 0.2s ease;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
-.history-card:hover {
+.hist-card:hover {
   box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
 }
 
-.history-card-left {
-  display: flex;
-  align-items: center;
-  gap: var(--space-lg);
-}
-
-.history-date {
+/* Date column */
+.hist-card-date {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-width: 40px;
+  padding-top: 2px;
+  flex-shrink: 0;
 }
 
-.history-day {
+.hist-card-day {
   font-size: var(--font-size-xl);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1;
+  color: var(--color-text);
 }
 
-.history-weekday {
-  font-size: var(--font-size-xs);
+.hist-card-weekday {
+  font-size: 10px;
+  font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
+  margin-top: 2px;
 }
 
-.history-info h3 {
-  font-size: var(--font-size-md);
-  font-weight: 600;
+/* Content */
+.hist-card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.hist-card-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   margin-bottom: 4px;
 }
 
-.history-meta {
-  display: flex;
-  gap: var(--space-md);
+.hist-card-top h3 {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+}
+
+.hist-card-badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+/* Exercise names */
+.hist-card-exercises {
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: var(--space-sm);
 }
 
-.history-meta span {
+/* Stats */
+.hist-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  column-gap: var(--space-md);
+  font-size: 11px;
+  color: var(--color-text-muted);
+}
+
+.hist-card-stats span {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
 }
 
-.history-chevron {
+.hist-card-chevron {
   color: var(--color-text-muted);
   flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* ---------- Empty State ---------- */
+.hist-empty {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.hist-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+}
+
+.hist-empty h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.hist-empty p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
 }
