@@ -175,6 +175,13 @@ img {
   min-height: 100vh;
 }
 
+@media (min-width: 768px) {
+  .page {
+    padding-top: calc(var(--nav-height) + var(--space-lg));
+    padding-bottom: var(--space-xl);
+  }
+}
+
 .page-header {
   margin-bottom: var(--space-xl);
 }
