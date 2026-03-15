@@ -206,8 +206,8 @@ img {
 }
 
 .badge-success {
-  background-color: #D1FAE5;
-  color: #065F46;
+  background-color: var(--color-primary-light);
+  color: var(--color-secondary);
 }
 
 /* Empty State */

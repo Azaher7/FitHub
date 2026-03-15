@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
-import { Settings, LogOut, ChevronRight, Calendar, Dumbbell, Flame } from 'lucide-react';
+import { Settings, LogOut, ChevronRight, Calendar, Dumbbell, Flame, Moon, Sun } from 'lucide-react';
 import Avatar from '../components/Avatar';
+import useTheme from '../hooks/useTheme';
 import { mockUser } from '../data/mockData';
 import './Profile.css';
 
 export default function Profile() {
   const user = mockUser;
+
+  const { theme, toggleTheme } = useTheme();
 
   const handleLogout = () => {
     // TODO: connect to backend
@@ -55,6 +58,13 @@ export default function Profile() {
           </div>
           <ChevronRight size={18} />
         </Link>
+        <button className="profile-menu-item card" onClick={toggleTheme}>
+          <div className="profile-menu-item-left">
+            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+            <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+          </div>
+          <ChevronRight size={18} />
+        </button>
         <button className="profile-menu-item card" onClick={handleLogout}>
           <div className="profile-menu-item-left">
             <LogOut size={18} />

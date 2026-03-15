@@ -87,7 +87,7 @@
 }
 
 .active-set-row.completed {
-  background: #F0FDF4;
+  background: var(--color-primary-light);
 }
 
 .set-number {

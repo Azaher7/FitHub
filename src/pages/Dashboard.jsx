@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Plus, Flame, Dumbbell, Calendar, TrendingUp, ChevronRight } from 'lucide-react';
 import Avatar from '../components/Avatar';
+import ThemeToggle from '../components/ThemeToggle';
 import { mockUser, mockTemplates, mockWorkoutHistory } from '../data/mockData';
 import './Dashboard.css';
 
@@ -15,9 +16,12 @@ export default function Dashboard() {
           <h1 className="page-title">Hey, {user.name.split(' ')[0]}</h1>
           <p className="page-subtitle">Ready to train?</p>
         </div>
-        <Link to="/profile">
-          <Avatar name={user.name} src={user.profilePicture} size="md" />
-        </Link>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-sm)' }}>
+          <ThemeToggle />
+          <Link to="/profile">
+            <Avatar name={user.name} src={user.profilePicture} size="md" />
+          </Link>
+        </div>
       </div>
 
       <div className="stats-grid">

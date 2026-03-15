@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Dumbbell, BarChart3, Clock, Zap } from 'lucide-react';
+import ThemeToggle from '../components/ThemeToggle';
 import './Landing.css';
 
 export default function Landing() {
@@ -12,6 +13,7 @@ export default function Landing() {
             <span>FitHub</span>
           </div>
           <div className="landing-header-actions">
+            <ThemeToggle />
             <Link to="/login" className="btn btn-ghost btn-sm">Log in</Link>
             <Link to="/signup" className="btn btn-primary btn-sm">Sign up</Link>
           </div>
