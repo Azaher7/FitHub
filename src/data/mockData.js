@@ -2,7 +2,10 @@
 export const mockUser = {
   id: '1',
   name: 'Alex Johnson',
+  username: 'alexlifts',
   email: 'alex@example.com',
+  bio: 'Chasing strength PRs one rep at a time.',
+  fitnessGoal: 'Build Strength',
   profilePicture: null,
   joinDate: '2025-01-15',
   stats: {
@@ -10,6 +13,9 @@ export const mockUser = {
     thisWeek: 3,
     currentStreak: 5,
     longestStreak: 12,
+    totalVolume: 284500,
+    totalHours: 42,
+    prs: 8,
   },
 };
 
