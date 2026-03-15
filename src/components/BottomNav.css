@@ -22,7 +22,8 @@
   color: var(--color-text-muted);
   transition: color 0.2s ease;
   padding: var(--space-sm);
-  min-width: 64px;
+  min-width: 0;
+  flex: 1;
 }
 
 .bottom-nav-item.active {
