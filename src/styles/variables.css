@@ -1,22 +1,44 @@
 :root {
-  /* Colors - Hevy-inspired blue theme */
-  --color-primary: #2196F3;
-  --color-primary-hover: #1976D2;
-  --color-primary-light: #E3F2FD;
-  --color-secondary: #4CAF50;
-  --color-secondary-hover: #388E3C;
-  --color-danger: #F44336;
-  --color-danger-hover: #D32F2F;
-  --color-warning: #FF9800;
+  /* Colors — Original indigo/purple theme */
+  --color-primary: #4F46E5;
+  --color-primary-hover: #4338CA;
+  --color-primary-light: #EEF2FF;
+  --color-secondary: #10B981;
+  --color-secondary-hover: #059669;
+  --color-danger: #EF4444;
+  --color-danger-hover: #DC2626;
+  --color-warning: #F59E0B;
 
-  /* Neutrals - Clean white */
-  --color-bg: #F5F5F5;
+  /* Neutrals */
+  --color-bg: #F9FAFB;
   --color-surface: #FFFFFF;
-  --color-border: #E0E0E0;
-  --color-border-light: #F0F0F0;
-  --color-text: #212121;
-  --color-text-secondary: #757575;
-  --color-text-muted: #9E9E9E;
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  --color-text: #111827;
+  --color-text-secondary: #6B7280;
+  --color-text-muted: #9CA3AF;
+
+  /* Landing page tokens (light) */
+  --landing-bg: #FFFFFF;
+  --landing-bg-alt: #F9FAFB;
+  --landing-text: #111827;
+  --landing-text-secondary: rgba(17, 24, 39, 0.6);
+  --landing-text-muted: rgba(17, 24, 39, 0.4);
+  --landing-border: rgba(17, 24, 39, 0.08);
+  --landing-card-bg: rgba(17, 24, 39, 0.03);
+  --landing-card-border: rgba(17, 24, 39, 0.06);
+  --landing-card-hover: rgba(17, 24, 39, 0.06);
+  --landing-accent: #4F46E5;
+  --landing-accent-soft: rgba(79, 70, 229, 0.1);
+  --landing-accent-text: #6366F1;
+  --landing-header-bg: rgba(255, 255, 255, 0.85);
+  --landing-hero-glow1: rgba(79, 70, 229, 0.1);
+  --landing-hero-glow2: rgba(79, 70, 229, 0.05);
+  --landing-avatar-bg: #EEF2FF;
+  --landing-step-num: rgba(79, 70, 229, 0.15);
+  --landing-star: #F59E0B;
+  --landing-footer-bg: #F3F4F6;
+  --landing-check: #10B981;
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -56,26 +78,48 @@
   --bottom-nav-height: 64px;
 }
 
-/* Dark Mode - Hevy-style dark with blue accents */
+/* Dark Mode */
 [data-theme="dark"] {
-  --color-primary: #42A5F5;
-  --color-primary-hover: #2196F3;
-  --color-primary-light: rgba(66, 165, 245, 0.12);
-  --color-secondary: #66BB6A;
-  --color-secondary-hover: #4CAF50;
-  --color-danger: #EF5350;
-  --color-danger-hover: #F44336;
-  --color-warning: #FFA726;
+  --color-primary: #818CF8;
+  --color-primary-hover: #6366F1;
+  --color-primary-light: rgba(129, 140, 248, 0.15);
+  --color-secondary: #34D399;
+  --color-secondary-hover: #10B981;
+  --color-danger: #F87171;
+  --color-danger-hover: #EF4444;
+  --color-warning: #FBBF24;
 
-  --color-bg: #121212;
-  --color-surface: #1E1E1E;
-  --color-border: #2C2C2C;
-  --color-border-light: #252525;
-  --color-text: #FFFFFF;
-  --color-text-secondary: #B0B0B0;
-  --color-text-muted: #757575;
+  --color-bg: #0F172A;
+  --color-surface: #1E293B;
+  --color-border: #334155;
+  --color-border-light: #1E293B;
+  --color-text: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #64748B;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6);
+  /* Landing page tokens (dark) */
+  --landing-bg: #0A0A0F;
+  --landing-bg-alt: #0E0E14;
+  --landing-text: #FFFFFF;
+  --landing-text-secondary: rgba(255, 255, 255, 0.55);
+  --landing-text-muted: rgba(255, 255, 255, 0.4);
+  --landing-border: rgba(255, 255, 255, 0.06);
+  --landing-card-bg: rgba(255, 255, 255, 0.03);
+  --landing-card-border: rgba(255, 255, 255, 0.06);
+  --landing-card-hover: rgba(255, 255, 255, 0.05);
+  --landing-accent: #818CF8;
+  --landing-accent-soft: rgba(129, 140, 248, 0.12);
+  --landing-accent-text: #A5B4FC;
+  --landing-header-bg: rgba(10, 10, 15, 0.85);
+  --landing-hero-glow1: rgba(129, 140, 248, 0.15);
+  --landing-hero-glow2: rgba(129, 140, 248, 0.08);
+  --landing-avatar-bg: #1A1A2E;
+  --landing-step-num: rgba(129, 140, 248, 0.25);
+  --landing-star: #FFC107;
+  --landing-footer-bg: #060609;
+  --landing-check: #34D399;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
