@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Plus, ChevronRight, Dumbbell } from 'lucide-react';
+import EmptyState from '../components/EmptyState';
 import { mockTemplates } from '../data/mockData';
 import './Templates.css';
 
@@ -43,10 +44,11 @@ export default function Templates() {
           ))}
         </div>
       ) : (
-        <div className="empty-state card">
-          <Dumbbell size={48} />
-          <p>No templates yet. Create one to get started!</p>
-        </div>
+        <EmptyState
+          icon={Dumbbell}
+          title="No templates yet"
+          message="Create one to get started!"
+        />
       )}
 
       <Link to="/templates/new" className="fab">

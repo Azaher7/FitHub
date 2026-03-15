@@ -5,27 +5,11 @@ import {
   Award, Zap,
 } from 'lucide-react';
 import Avatar from '../components/Avatar';
+import StatCard from '../components/StatCard';
 import useTheme from '../hooks/useTheme';
+import { getRelativeDate, getWorkoutVolume, getWorkoutSets } from '../utils/helpers';
 import { mockUser, mockWorkoutHistory } from '../data/mockData';
 import './Profile.css';
-
-function getVolume(workout) {
-  return workout.exercises.reduce(
-    (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps * set.weight, 0),
-    0
-  );
-}
-
-function getRelativeDate(dateStr) {
-  const date = new Date(dateStr);
-  const now = new Date();
-  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
-  if (diffDays < 7) return `${diffDays}d ago`;
-  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w ago`;
-  return `${Math.floor(diffDays / 30)}mo ago`;
-}
 
 const achievements = [
   { icon: Flame, label: 'First Streak', desc: '5 day streak', unlocked: true },
@@ -72,48 +56,12 @@ export default function Profile() {
 
       {/* Stats Grid */}
       <div className="prof-stats">
-        <div className="prof-stat">
-          <div className="prof-stat-icon">
-            <Dumbbell size={16} />
-          </div>
-          <span className="prof-stat-value">{user.stats.totalWorkouts}</span>
-          <span className="prof-stat-label">Workouts</span>
-        </div>
-        <div className="prof-stat">
-          <div className="prof-stat-icon">
-            <Clock size={16} />
-          </div>
-          <span className="prof-stat-value">{user.stats.totalHours}h</span>
-          <span className="prof-stat-label">Total Time</span>
-        </div>
-        <div className="prof-stat">
-          <div className="prof-stat-icon">
-            <Weight size={16} />
-          </div>
-          <span className="prof-stat-value">{(user.stats.totalVolume / 1000).toFixed(0)}k</span>
-          <span className="prof-stat-label">lbs Lifted</span>
-        </div>
-        <div className="prof-stat">
-          <div className="prof-stat-icon">
-            <Flame size={16} />
-          </div>
-          <span className="prof-stat-value">{user.stats.currentStreak}</span>
-          <span className="prof-stat-label">Day Streak</span>
-        </div>
-        <div className="prof-stat">
-          <div className="prof-stat-icon">
-            <TrendingUp size={16} />
-          </div>
-          <span className="prof-stat-value">{user.stats.longestStreak}</span>
-          <span className="prof-stat-label">Best Streak</span>
-        </div>
-        <div className="prof-stat">
-          <div className="prof-stat-icon">
-            <Trophy size={16} />
-          </div>
-          <span className="prof-stat-value">{user.stats.prs}</span>
-          <span className="prof-stat-label">PRs Hit</span>
-        </div>
+        <StatCard icon={Dumbbell} value={user.stats.totalWorkouts} label="Workouts" />
+        <StatCard icon={Clock} value={`${user.stats.totalHours}h`} label="Total Time" />
+        <StatCard icon={Weight} value={`${(user.stats.totalVolume / 1000).toFixed(0)}k`} label="lbs Lifted" />
+        <StatCard icon={Flame} value={user.stats.currentStreak} label="Day Streak" />
+        <StatCard icon={TrendingUp} value={user.stats.longestStreak} label="Best Streak" />
+        <StatCard icon={Trophy} value={user.stats.prs} label="PRs Hit" />
       </div>
 
       {/* Achievements */}
@@ -149,8 +97,8 @@ export default function Profile() {
         </div>
         <div className="prof-activity">
           {recentWorkouts.map(workout => {
-            const volume = getVolume(workout);
-            const totalSets = workout.exercises.reduce((sum, ex) => sum + ex.sets.length, 0);
+            const volume = getWorkoutVolume(workout);
+            const totalSets = getWorkoutSets(workout);
             return (
               <Link key={workout.id} to={`/workout/${workout.id}`} className="prof-activity-card">
                 <div className="prof-activity-date">

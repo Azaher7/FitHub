@@ -213,35 +213,4 @@
   margin-top: 4px;
 }
 
-/* ---------- Empty State ---------- */
-.hist-empty {
-  text-align: center;
-  padding: var(--space-2xl) var(--space-lg);
-  background: var(--color-surface);
-  border: 2px dashed var(--color-border);
-  border-radius: var(--radius-xl);
-}
-
-.hist-empty-icon {
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto var(--space-md);
-}
-
-.hist-empty h3 {
-  font-size: var(--font-size-md);
-  font-weight: 600;
-  margin-bottom: var(--space-xs);
-  color: var(--color-text);
-}
-
-.hist-empty p {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-}
+/* Empty state is handled by the shared EmptyState component */

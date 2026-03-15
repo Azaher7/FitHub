@@ -1,0 +1,39 @@
+/* ========================================
+   REUSABLE EMPTY STATE
+   ======================================== */
+
+.empty-box {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+.empty-box-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+}
+
+.empty-box-title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+}
+
+.empty-box-message {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.empty-box-actions {
+  margin-top: var(--space-md);
+}

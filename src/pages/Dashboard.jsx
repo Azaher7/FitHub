@@ -5,50 +5,10 @@ import {
 } from 'lucide-react';
 import Avatar from '../components/Avatar';
 import ThemeToggle from '../components/ThemeToggle';
+import EmptyState from '../components/EmptyState';
+import { getGreeting, getRelativeDate, getWorkoutVolume, getWeekActivity } from '../utils/helpers';
 import { mockUser, mockTemplates, mockWorkoutHistory } from '../data/mockData';
 import './Dashboard.css';
-
-function getGreeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return 'Good morning';
-  if (hour < 17) return 'Good afternoon';
-  return 'Good evening';
-}
-
-function getRelativeDate(dateStr) {
-  const date = new Date(dateStr);
-  const now = new Date();
-  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
-  if (diffDays < 7) return `${diffDays} days ago`;
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
-
-function getTotalVolume(workout) {
-  return workout.exercises.reduce(
-    (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps * set.weight, 0),
-    0
-  );
-}
-
-// Which days this week had a workout (Mon=0 ... Sun=6)
-function getWeekActivity(workouts) {
-  const now = new Date();
-  const dayOfWeek = now.getDay();
-  const monday = new Date(now);
-  monday.setDate(now.getDate() - ((dayOfWeek + 6) % 7));
-  monday.setHours(0, 0, 0, 0);
-
-  const activeDays = new Set();
-  workouts.forEach(w => {
-    const d = new Date(w.date);
-    if (d >= monday) {
-      activeDays.add((d.getDay() + 6) % 7); // 0=Mon
-    }
-  });
-  return activeDays;
-}
 
 export default function Dashboard() {
   const user = mockUser;
@@ -60,12 +20,12 @@ export default function Dashboard() {
   return (
     <div className="page">
       {/* Greeting */}
-      <div className="dashboard-greeting">
+      <div className="dash-greeting">
         <div>
-          <p className="greeting-label">{getGreeting()}</p>
+          <p className="dash-greeting-label">{getGreeting()}</p>
           <h1 className="page-title">{user.name.split(' ')[0]}</h1>
         </div>
-        <div className="greeting-actions">
+        <div className="dash-greeting-actions">
           <ThemeToggle />
           <Link to="/profile">
             <Avatar name={user.name} src={user.profilePicture} size="md" />
@@ -74,9 +34,9 @@ export default function Dashboard() {
       </div>
 
       {/* Start Workout CTA */}
-      <Link to="/workout/active" className="start-workout-cta">
-        <div className="start-workout-left">
-          <div className="start-workout-icon">
+      <Link to="/workout/active" className="dash-cta">
+        <div className="dash-cta-left">
+          <div className="dash-cta-icon">
             <Play size={22} fill="currentColor" />
           </div>
           <div>
@@ -88,20 +48,18 @@ export default function Dashboard() {
       </Link>
 
       {/* Weekly Activity */}
-      <div className="week-tracker card">
-        <div className="week-tracker-header">
+      <div className="dash-week card">
+        <div className="dash-week-header">
           <h3>This Week</h3>
-          <span className="week-tracker-count">
-            {weekActivity.size} / 7 days
-          </span>
+          <span className="dash-week-count">{weekActivity.size} / 7 days</span>
         </div>
-        <div className="week-dots">
+        <div className="dash-week-dots">
           {dayLabels.map((label, i) => (
-            <div key={i} className="week-dot-col">
+            <div key={i} className="dash-week-col">
               <div
-                className={`week-dot ${weekActivity.has(i) ? 'active' : ''} ${i === todayIndex ? 'today' : ''}`}
+                className={`dash-dot ${weekActivity.has(i) ? 'active' : ''} ${i === todayIndex ? 'today' : ''}`}
               />
-              <span className={`week-dot-label ${i === todayIndex ? 'today' : ''}`}>
+              <span className={`dash-dot-label ${i === todayIndex ? 'today' : ''}`}>
                 {label}
               </span>
             </div>
@@ -110,57 +68,49 @@ export default function Dashboard() {
       </div>
 
       {/* Stats */}
-      <div className="stats-grid">
-        <div className="stat-card card">
-          <div className="stat-icon-wrap">
-            <Dumbbell size={18} />
-          </div>
-          <div className="stat-value">{user.stats.totalWorkouts}</div>
-          <div className="stat-label">Total Workouts</div>
+      <div className="dash-stats">
+        <div className="dash-stat card">
+          <div className="dash-stat-icon"><Dumbbell size={18} /></div>
+          <div className="dash-stat-value">{user.stats.totalWorkouts}</div>
+          <div className="dash-stat-label">Total Workouts</div>
         </div>
-        <div className="stat-card card">
-          <div className="stat-icon-wrap">
-            <Calendar size={18} />
-          </div>
-          <div className="stat-value">{user.stats.thisWeek}</div>
-          <div className="stat-label">This Week</div>
+        <div className="dash-stat card">
+          <div className="dash-stat-icon"><Calendar size={18} /></div>
+          <div className="dash-stat-value">{user.stats.thisWeek}</div>
+          <div className="dash-stat-label">This Week</div>
         </div>
-        <div className="stat-card card">
-          <div className="stat-icon-wrap">
-            <Flame size={18} />
-          </div>
-          <div className="stat-value">{user.stats.currentStreak}</div>
-          <div className="stat-label">Day Streak</div>
+        <div className="dash-stat card">
+          <div className="dash-stat-icon"><Flame size={18} /></div>
+          <div className="dash-stat-value">{user.stats.currentStreak}</div>
+          <div className="dash-stat-label">Day Streak</div>
         </div>
-        <div className="stat-card card">
-          <div className="stat-icon-wrap">
-            <TrendingUp size={18} />
-          </div>
-          <div className="stat-value">{user.stats.longestStreak}</div>
-          <div className="stat-label">Best Streak</div>
+        <div className="dash-stat card">
+          <div className="dash-stat-icon"><TrendingUp size={18} /></div>
+          <div className="dash-stat-value">{user.stats.longestStreak}</div>
+          <div className="dash-stat-label">Best Streak</div>
         </div>
       </div>
 
       {/* Templates / Quick Start */}
-      <section className="dashboard-section">
-        <div className="section-header">
+      <section className="dash-section">
+        <div className="dash-section-header">
           <h2>My Templates</h2>
-          <Link to="/templates/new" className="section-link">
+          <Link to="/templates/new" className="dash-section-link">
             <Plus size={16} /> New
           </Link>
         </div>
         {mockTemplates.length > 0 ? (
-          <div className="template-quick-list">
+          <div className="dash-template-list">
             {mockTemplates.map(template => (
-              <div key={template.id} className="template-quick-card card">
+              <div key={template.id} className="dash-template card">
                 <Link
                   to={`/workout/active?template=${template.id}`}
-                  className="template-quick-inner"
+                  className="dash-template-inner"
                 >
-                  <div className="template-quick-icon">
+                  <div className="dash-template-icon">
                     <Dumbbell size={18} />
                   </div>
-                  <div className="template-quick-info">
+                  <div className="dash-template-info">
                     <h3>{template.name}</h3>
                     <p>
                       {template.exercises.length} exercises
@@ -172,7 +122,7 @@ export default function Dashboard() {
                 </Link>
                 <Link
                   to={`/workout/active?template=${template.id}`}
-                  className="template-start-btn"
+                  className="dash-template-start"
                 >
                   <Play size={14} fill="currentColor" />
                 </Link>
@@ -180,44 +130,46 @@ export default function Dashboard() {
             ))}
           </div>
         ) : (
-          <div className="empty-state card">
-            <Dumbbell size={40} />
-            <p>No templates yet</p>
+          <EmptyState
+            icon={Dumbbell}
+            title="No templates yet"
+            message="Create a template to get started"
+          >
             <Link to="/templates/new" className="btn btn-primary btn-sm" style={{ width: 'auto' }}>
               Create Template
             </Link>
-          </div>
+          </EmptyState>
         )}
         {mockTemplates.length > 0 && (
-          <Link to="/templates" className="view-all-link">
+          <Link to="/templates" className="dash-view-all">
             View all templates <ChevronRight size={16} />
           </Link>
         )}
       </section>
 
       {/* Recent Workouts */}
-      <section className="dashboard-section">
-        <div className="section-header">
+      <section className="dash-section">
+        <div className="dash-section-header">
           <h2>Recent Workouts</h2>
-          <Link to="/history" className="section-link">View All</Link>
+          <Link to="/history" className="dash-section-link">View All</Link>
         </div>
         {recentWorkouts.length > 0 ? (
-          <div className="recent-workout-list">
+          <div className="dash-recent-list">
             {recentWorkouts.map(workout => {
-              const volume = getTotalVolume(workout);
+              const volume = getWorkoutVolume(workout);
               return (
-                <Link key={workout.id} to={`/workout/${workout.id}`} className="recent-workout-card card">
-                  <div className="recent-workout-date">
-                    <span className="recent-workout-day">
+                <Link key={workout.id} to={`/workout/${workout.id}`} className="dash-recent card">
+                  <div className="dash-recent-date">
+                    <span className="dash-recent-day">
                       {new Date(workout.date).getDate()}
                     </span>
-                    <span className="recent-workout-month">
+                    <span className="dash-recent-month">
                       {new Date(workout.date).toLocaleDateString('en-US', { month: 'short' })}
                     </span>
                   </div>
-                  <div className="recent-workout-info">
+                  <div className="dash-recent-info">
                     <h3>{workout.templateName}</h3>
-                    <div className="recent-workout-stats">
+                    <div className="dash-recent-stats">
                       <span><Dumbbell size={12} /> {workout.exercises.length} exercises</span>
                       <span><Clock size={12} /> {workout.duration} min</span>
                       {volume > 0 && (
@@ -225,16 +177,17 @@ export default function Dashboard() {
                       )}
                     </div>
                   </div>
-                  <ChevronRight size={18} className="recent-workout-chevron" />
+                  <ChevronRight size={18} className="dash-recent-chevron" />
                 </Link>
               );
             })}
           </div>
         ) : (
-          <div className="empty-state card">
-            <Clock size={40} />
-            <p>No workouts logged yet.<br />Complete your first workout to see it here!</p>
-          </div>
+          <EmptyState
+            icon={Clock}
+            title="No workouts logged yet"
+            message="Complete your first workout to see it here!"
+          />
         )}
       </section>
     </div>

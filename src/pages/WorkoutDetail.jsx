@@ -1,20 +1,9 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Clock, Dumbbell, Weight, TrendingUp, Trophy, Calendar } from 'lucide-react';
+import EmptyState from '../components/EmptyState';
+import { getBestSetIndex } from '../utils/helpers';
 import { mockWorkoutHistory } from '../data/mockData';
 import './WorkoutDetail.css';
-
-function getBestSet(sets) {
-  let best = null;
-  let bestVolume = 0;
-  sets.forEach((set, i) => {
-    const vol = set.reps * set.weight;
-    if (vol > bestVolume) {
-      bestVolume = vol;
-      best = i;
-    }
-  });
-  return best;
-}
 
 export default function WorkoutDetail() {
   const { id } = useParams();
@@ -25,18 +14,19 @@ export default function WorkoutDetail() {
   if (!workout) {
     return (
       <div className="page">
-        <div className="hist-empty">
-          <div className="hist-empty-icon"><Dumbbell size={36} /></div>
-          <h3>Workout not found</h3>
-          <p>This workout may have been deleted</p>
+        <EmptyState
+          icon={Dumbbell}
+          title="Workout not found"
+          message="This workout may have been deleted"
+        >
           <button
             className="btn btn-primary btn-sm"
             onClick={() => navigate('/history')}
-            style={{ width: 'auto', marginTop: 'var(--space-md)' }}
+            style={{ width: 'auto' }}
           >
             Go to History
           </button>
-        </div>
+        </EmptyState>
       </div>
     );
   }
@@ -105,7 +95,7 @@ export default function WorkoutDetail() {
       {/* Exercises */}
       <div className="wd-exercises">
         {workout.exercises.map((exercise, i) => {
-          const bestIdx = getBestSet(exercise.sets);
+          const bestIdx = getBestSetIndex(exercise.sets);
           return (
             <div key={i} className="wd-exercise">
               <div className="wd-exercise-header">

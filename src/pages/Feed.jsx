@@ -5,22 +5,9 @@ import {
   UserPlus, Flame,
 } from 'lucide-react';
 import Avatar from '../components/Avatar';
+import { timeAgo } from '../utils/helpers';
 import { mockUser, mockFeedPosts, mockCommunityUsers } from '../data/mockData';
 import './Feed.css';
-
-function timeAgo(timestamp) {
-  const now = new Date();
-  const date = new Date(timestamp);
-  const diffMs = now - date;
-  const diffMins = Math.floor(diffMs / 60000);
-  if (diffMins < 1) return 'Just now';
-  if (diffMins < 60) return `${diffMins}m ago`;
-  const diffHours = Math.floor(diffMins / 60);
-  if (diffHours < 24) return `${diffHours}h ago`;
-  const diffDays = Math.floor(diffHours / 24);
-  if (diffDays < 7) return `${diffDays}d ago`;
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-}
 
 function PostComposer() {
   const [caption, setCaption] = useState('');

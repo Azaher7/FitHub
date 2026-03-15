@@ -9,7 +9,10 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: mockUser.name,
+    username: mockUser.username,
     email: mockUser.email,
+    bio: mockUser.bio || '',
+    fitnessGoal: mockUser.fitnessGoal || '',
   });
   const [profilePicture, setProfilePicture] = useState(mockUser.profilePicture);
 
@@ -68,6 +71,17 @@ export default function EditProfile() {
           />
         </div>
         <div className="form-group">
+          <label className="form-label" htmlFor="edit-username">Username</label>
+          <input
+            id="edit-username"
+            type="text"
+            className="form-input"
+            value={form.username}
+            onChange={update('username')}
+            required
+          />
+        </div>
+        <div className="form-group">
           <label className="form-label" htmlFor="edit-email">Email</label>
           <input
             id="edit-email"
@@ -77,6 +91,34 @@ export default function EditProfile() {
             onChange={update('email')}
             required
           />
+        </div>
+        <div className="form-group">
+          <label className="form-label" htmlFor="edit-bio">Bio</label>
+          <textarea
+            id="edit-bio"
+            className="form-input"
+            value={form.bio}
+            onChange={update('bio')}
+            rows={3}
+            placeholder="Tell us about your fitness journey..."
+            style={{ resize: 'vertical' }}
+          />
+        </div>
+        <div className="form-group">
+          <label className="form-label" htmlFor="edit-goal">Fitness Goal</label>
+          <select
+            id="edit-goal"
+            className="form-input"
+            value={form.fitnessGoal}
+            onChange={update('fitnessGoal')}
+          >
+            <option value="">Select a goal</option>
+            <option value="Build Strength">Build Strength</option>
+            <option value="Lose Weight">Lose Weight</option>
+            <option value="Build Muscle">Build Muscle</option>
+            <option value="Improve Endurance">Improve Endurance</option>
+            <option value="Stay Active">Stay Active</option>
+          </select>
         </div>
 
         <div className="edit-profile-actions">

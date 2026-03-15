@@ -3,28 +3,28 @@
    ======================================== */
 
 /* ---------- Greeting ---------- */
-.dashboard-greeting {
+.dash-greeting {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-xl);
 }
 
-.greeting-label {
+.dash-greeting-label {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
   font-weight: 500;
   margin-bottom: 2px;
 }
 
-.greeting-actions {
+.dash-greeting-actions {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
 }
 
 /* ---------- Start Workout CTA ---------- */
-.start-workout-cta {
+.dash-cta {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -37,18 +37,18 @@
   transition: background 0.2s, transform 0.15s;
 }
 
-.start-workout-cta:hover {
+.dash-cta:hover {
   background: var(--color-primary-hover);
   transform: translateY(-1px);
 }
 
-.start-workout-left {
+.dash-cta-left {
   display: flex;
   align-items: center;
   gap: var(--space-md);
 }
 
-.start-workout-icon {
+.dash-cta-icon {
   width: 44px;
   height: 44px;
   border-radius: var(--radius-full);
@@ -59,48 +59,48 @@
   flex-shrink: 0;
 }
 
-.start-workout-cta h2 {
+.dash-cta h2 {
   font-size: var(--font-size-md);
   font-weight: 700;
 }
 
-.start-workout-cta p {
+.dash-cta p {
   font-size: var(--font-size-xs);
   opacity: 0.8;
   margin-top: 2px;
 }
 
 /* ---------- Weekly Activity Tracker ---------- */
-.week-tracker {
+.dash-week {
   margin-bottom: var(--space-xl);
   padding: var(--space-lg);
 }
 
-.week-tracker-header {
+.dash-week-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-md);
 }
 
-.week-tracker-header h3 {
+.dash-week-header h3 {
   font-size: var(--font-size-sm);
   font-weight: 600;
 }
 
-.week-tracker-count {
+.dash-week-count {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   font-weight: 500;
 }
 
-.week-dots {
+.dash-week-dots {
   display: flex;
   justify-content: space-between;
   gap: var(--space-sm);
 }
 
-.week-dot-col {
+.dash-week-col {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,7 +108,7 @@
   flex: 1;
 }
 
-.week-dot {
+.dash-dot {
   width: 28px;
   height: 28px;
   border-radius: var(--radius-full);
@@ -117,29 +117,29 @@
   transition: all 0.2s;
 }
 
-.week-dot.active {
+.dash-dot.active {
   background: var(--color-primary);
   border-color: var(--color-primary);
 }
 
-.week-dot.today:not(.active) {
+.dash-dot.today:not(.active) {
   border-color: var(--color-primary);
   border-style: dashed;
 }
 
-.week-dot-label {
+.dash-dot-label {
   font-size: 10px;
   font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
 
-.week-dot-label.today {
+.dash-dot-label.today {
   color: var(--color-primary);
 }
 
 /* ---------- Stats Grid ---------- */
-.stats-grid {
+.dash-stats {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-sm);
@@ -147,17 +147,17 @@
 }
 
 @media (min-width: 768px) {
-  .stats-grid {
+  .dash-stats {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.stat-card {
+.dash-stat {
   text-align: center;
   padding: var(--space-md) var(--space-sm);
 }
 
-.stat-icon-wrap {
+.dash-stat-icon {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-full);
@@ -169,35 +169,35 @@
   margin: 0 auto var(--space-sm);
 }
 
-.stat-value {
+.dash-stat-value {
   font-size: var(--font-size-xl);
   font-weight: 700;
 }
 
-.stat-label {
+.dash-stat-label {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   margin-top: 2px;
 }
 
 /* ---------- Sections ---------- */
-.dashboard-section {
+.dash-section {
   margin-bottom: var(--space-xl);
 }
 
-.section-header {
+.dash-section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-md);
 }
 
-.section-header h2 {
+.dash-section-header h2 {
   font-size: var(--font-size-lg);
   font-weight: 700;
 }
 
-.section-link {
+.dash-section-link {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -206,7 +206,7 @@
   font-weight: 500;
 }
 
-.view-all-link {
+.dash-view-all {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -218,18 +218,18 @@
   transition: color 0.2s;
 }
 
-.view-all-link:hover {
+.dash-view-all:hover {
   color: var(--color-primary);
 }
 
 /* ---------- Template Cards ---------- */
-.template-quick-list {
+.dash-template-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
 
-.template-quick-card {
+.dash-template {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -237,7 +237,7 @@
   overflow: hidden;
 }
 
-.template-quick-inner {
+.dash-template-inner {
   display: flex;
   align-items: center;
   gap: var(--space-md);
@@ -246,7 +246,7 @@
   min-width: 0;
 }
 
-.template-quick-icon {
+.dash-template-icon {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
@@ -258,11 +258,11 @@
   flex-shrink: 0;
 }
 
-.template-quick-info {
+.dash-template-info {
   min-width: 0;
 }
 
-.template-quick-info h3 {
+.dash-template-info h3 {
   font-size: var(--font-size-md);
   font-weight: 600;
   white-space: nowrap;
@@ -270,13 +270,13 @@
   text-overflow: ellipsis;
 }
 
-.template-quick-info p {
+.dash-template-info p {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   margin-top: 2px;
 }
 
-.template-start-btn {
+.dash-template-start {
   width: 44px;
   height: 100%;
   min-height: 64px;
@@ -289,31 +289,32 @@
   flex-shrink: 0;
 }
 
-.template-start-btn:hover {
+.dash-template-start:hover {
   background: var(--color-primary);
   color: #FFFFFF;
 }
 
 /* ---------- Recent Workouts ---------- */
-.recent-workout-list {
+.dash-recent-list {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
 }
 
-.recent-workout-card {
+.dash-recent {
   display: flex;
   align-items: center;
   gap: var(--space-md);
   padding: var(--space-md) var(--space-lg);
-  transition: box-shadow 0.2s ease;
+  transition: box-shadow 0.2s, border-color 0.2s;
 }
 
-.recent-workout-card:hover {
+.dash-recent:hover {
   box-shadow: var(--shadow-md);
+  border-color: var(--color-primary-light);
 }
 
-.recent-workout-date {
+.dash-recent-date {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -321,31 +322,31 @@
   flex-shrink: 0;
 }
 
-.recent-workout-day {
+.dash-recent-day {
   font-size: var(--font-size-xl);
   font-weight: 700;
   line-height: 1;
 }
 
-.recent-workout-month {
+.dash-recent-month {
   font-size: 10px;
   font-weight: 600;
   color: var(--color-text-muted);
   text-transform: uppercase;
 }
 
-.recent-workout-info {
+.dash-recent-info {
   flex: 1;
   min-width: 0;
 }
 
-.recent-workout-info h3 {
+.dash-recent-info h3 {
   font-size: var(--font-size-md);
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.recent-workout-stats {
+.dash-recent-stats {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-md);
@@ -353,13 +354,13 @@
   color: var(--color-text-secondary);
 }
 
-.recent-workout-stats span {
+.dash-recent-stats span {
   display: inline-flex;
   align-items: center;
   gap: 3px;
 }
 
-.recent-workout-chevron {
+.dash-recent-chevron {
   color: var(--color-text-muted);
   flex-shrink: 0;
 }

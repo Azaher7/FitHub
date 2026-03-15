@@ -1,32 +1,12 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  Clock, Dumbbell, ChevronRight, ClipboardList,
-  Search, Weight, Calendar, TrendingUp,
+  Clock, Dumbbell, ChevronRight, Search, Weight, Calendar, TrendingUp,
 } from 'lucide-react';
+import EmptyState from '../components/EmptyState';
+import { getRelativeDate, getWorkoutVolume, getWorkoutSets } from '../utils/helpers';
 import { mockWorkoutHistory } from '../data/mockData';
 import './History.css';
-
-function getVolume(workout) {
-  return workout.exercises.reduce(
-    (sum, ex) => sum + ex.sets.reduce((s, set) => s + set.reps * set.weight, 0),
-    0
-  );
-}
-
-function getTotalSets(workout) {
-  return workout.exercises.reduce((sum, ex) => sum + ex.sets.length, 0);
-}
-
-function getRelativeDate(dateStr) {
-  const date = new Date(dateStr);
-  const now = new Date();
-  const diffDays = Math.floor((now - date) / (1000 * 60 * 60 * 24));
-  if (diffDays === 0) return 'Today';
-  if (diffDays === 1) return 'Yesterday';
-  if (diffDays < 7) return `${diffDays}d ago`;
-  return null;
-}
 
 export default function History() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -54,7 +34,7 @@ export default function History() {
 
   // Summary stats
   const totalWorkouts = mockWorkoutHistory.length;
-  const totalVolume = mockWorkoutHistory.reduce((s, w) => s + getVolume(w), 0);
+  const totalVolume = mockWorkoutHistory.reduce((s, w) => s + getWorkoutVolume(w), 0);
   const totalDuration = mockWorkoutHistory.reduce((s, w) => s + w.duration, 0);
 
   return (
@@ -114,13 +94,12 @@ export default function History() {
               </div>
               <div className="hist-list">
                 {group.workouts.map(workout => {
-                  const volume = getVolume(workout);
-                  const sets = getTotalSets(workout);
+                  const volume = getWorkoutVolume(workout);
+                  const sets = getWorkoutSets(workout);
                   const relative = getRelativeDate(workout.date);
 
                   return (
                     <Link key={workout.id} to={`/workout/${workout.id}`} className="hist-card">
-                      {/* Date Column */}
                       <div className="hist-card-date">
                         <span className="hist-card-day">
                           {new Date(workout.date).getDate()}
@@ -130,19 +109,14 @@ export default function History() {
                         </span>
                       </div>
 
-                      {/* Content */}
                       <div className="hist-card-content">
                         <div className="hist-card-top">
                           <h3>{workout.templateName}</h3>
                           {relative && <span className="hist-card-badge">{relative}</span>}
                         </div>
-
-                        {/* Exercise names preview */}
                         <p className="hist-card-exercises">
                           {workout.exercises.map(ex => ex.name).join(' · ')}
                         </p>
-
-                        {/* Stats row */}
                         <div className="hist-card-stats">
                           <span><Dumbbell size={11} /> {workout.exercises.length} exercises</span>
                           <span><TrendingUp size={11} /> {sets} sets</span>
@@ -162,22 +136,11 @@ export default function History() {
           ))}
         </div>
       ) : (
-        <div className="hist-empty">
-          <div className="hist-empty-icon">
-            <ClipboardList size={36} />
-          </div>
-          {searchQuery ? (
-            <>
-              <h3>No results</h3>
-              <p>No workouts match "{searchQuery}"</p>
-            </>
-          ) : (
-            <>
-              <h3>No workouts yet</h3>
-              <p>Complete a workout to see it here</p>
-            </>
-          )}
-        </div>
+        <EmptyState
+          icon={searchQuery ? Search : Dumbbell}
+          title={searchQuery ? 'No results' : 'No workouts yet'}
+          message={searchQuery ? `No workouts match "${searchQuery}"` : 'Complete a workout to see it here'}
+        />
       )}
     </div>
   );
