@@ -389,38 +389,189 @@
 .features-visual {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(2, 180px);
+  grid-template-rows: repeat(2, 220px);
   gap: var(--space-md);
   margin-bottom: var(--space-2xl);
 }
 
-.features-visual img {
+@media (min-width: 1024px) {
+  .features-visual {
+    grid-template-rows: repeat(2, 260px);
+  }
+}
+
+.features-visual-item {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--landing-image-border);
+  box-shadow: var(--landing-shadow-card);
+  transition: transform 0.5s ease, box-shadow 0.3s ease;
+  isolation: isolate;
+}
+
+.features-visual-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--landing-image-border);
-  transition: transform 0.5s ease, box-shadow 0.3s ease;
-  box-shadow: var(--landing-shadow-card);
   display: block;
+  transition: transform 0.7s ease;
 }
 
-.features-visual img:hover {
-  transform: scale(1.03);
+.features-visual-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(10, 10, 10, 0.65) 100%);
+  pointer-events: none;
+}
+
+.features-visual-item figcaption {
+  position: absolute;
+  left: var(--space-lg);
+  right: var(--space-lg);
+  bottom: var(--space-md);
+  color: #fff;
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.features-visual-item-0 figcaption {
+  font-size: var(--font-size-lg);
+}
+
+@media (min-width: 1024px) {
+  .features-visual-item-0 figcaption {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.features-visual-item:hover {
+  transform: translateY(-3px);
   box-shadow: var(--landing-shadow-card-hover);
 }
 
-.features-visual img:first-child {
+.features-visual-item:hover img {
+  transform: scale(1.05);
+}
+
+.features-visual-item-0 {
   grid-row: span 2;
 }
 
 @media (max-width: 640px) {
   .features-visual {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 160px);
+    grid-template-rows: repeat(3, 200px);
   }
-  .features-visual img:first-child {
+  .features-visual-item-0 {
     grid-row: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .features-visual-item,
+  .features-visual-item:hover,
+  .features-visual-item img,
+  .features-visual-item:hover img {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Showcase band ---------- */
+.showcase-band {
+  position: relative;
+  width: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 5rem var(--space-lg);
+  color: #fff;
+  text-align: center;
+  border-top: 1px solid var(--landing-border);
+  border-bottom: 1px solid var(--landing-border);
+}
+
+@media (min-width: 768px) {
+  .showcase-band {
+    min-height: 420px;
+    padding: 7rem var(--space-lg);
+  }
+}
+
+.showcase-band img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.showcase-band-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.75) 100%),
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(33, 150, 243, 0.35), transparent 70%);
+  z-index: 1;
+}
+
+.showcase-band-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.showcase-band-eyebrow {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-lg);
+  backdrop-filter: blur(4px);
+}
+
+.showcase-band h3 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: var(--space-md);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) {
+  .showcase-band h3 {
+    font-size: 3rem;
+  }
+}
+
+.showcase-band p {
+  font-size: var(--font-size-md);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .showcase-band p {
+    font-size: 1.125rem;
   }
 }
 

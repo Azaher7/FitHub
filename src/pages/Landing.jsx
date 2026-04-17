@@ -12,18 +12,22 @@ import './Landing.css';
 const HERO_IMAGE = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80&auto=format&fit=crop';
 const FEATURE_IMAGES = [
   {
-    src: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=1200&q=80&auto=format&fit=crop',
     alt: 'Athlete performing a heavy barbell lift',
+    caption: 'Built for real training.',
   },
   {
-    src: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=900&q=80&auto=format&fit=crop',
     alt: 'Rack of dumbbells in a modern gym',
+    caption: 'Track every session.',
   },
   {
-    src: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800&q=80&auto=format&fit=crop',
+    src: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=900&q=80&auto=format&fit=crop',
     alt: 'Woman training with kettlebells',
+    caption: 'Move with intent.',
   },
 ];
+const SHOWCASE_IMAGE = 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1920&q=80&auto=format&fit=crop';
 
 const features = [
   {
@@ -100,6 +104,7 @@ export default function Landing() {
             <a href="#features">Features</a>
             <a href="#how-it-works">How It Works</a>
             <a href="#testimonials">Reviews</a>
+            <Link to="/about">About</Link>
           </nav>
           <div className="landing-header-actions">
             <ThemeToggle />
@@ -172,14 +177,16 @@ export default function Landing() {
             Built for people who actually lift. No calorie counters, no social feeds — just workout tracking done right.
           </p>
           <div className="features-visual reveal" style={{ '--reveal-delay': '200ms' }}>
-            {FEATURE_IMAGES.map((img) => (
-              <img
-                key={img.src}
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                decoding="async"
-              />
+            {FEATURE_IMAGES.map((img, i) => (
+              <figure key={img.src} className={`features-visual-item features-visual-item-${i}`}>
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption>{img.caption}</figcaption>
+              </figure>
             ))}
           </div>
           <div className="features-grid">
@@ -197,6 +204,22 @@ export default function Landing() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Showcase band — full-bleed visual break between sections */}
+      <section className="showcase-band" aria-label="FitHub in action">
+        <img
+          src={SHOWCASE_IMAGE}
+          alt="Lifter mid-set inside a high-contrast gym"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="showcase-band-overlay" aria-hidden="true" />
+        <div className="showcase-band-content reveal">
+          <span className="showcase-band-eyebrow">Train with purpose</span>
+          <h3>Lift. Log. Level up.</h3>
+          <p>Every rep you record makes the next session sharper. FitHub keeps your training on record so progress never goes missing.</p>
         </div>
       </section>
 
@@ -296,7 +319,8 @@ export default function Landing() {
               <a href="#testimonials">Reviews</a>
             </div>
             <div className="footer-col">
-              <h4>Account</h4>
+              <h4>Company</h4>
+              <Link to="/about">About</Link>
               <Link to="/signup">Sign Up</Link>
               <Link to="/login">Log In</Link>
             </div>

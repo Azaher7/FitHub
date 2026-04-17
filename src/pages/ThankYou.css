@@ -1,0 +1,187 @@
+.thank-you {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--landing-bg);
+  color: var(--landing-text);
+  overflow: hidden;
+}
+
+.thank-you-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 0%, var(--landing-hero-glow1), transparent 70%),
+    radial-gradient(ellipse 60% 60% at 50% 100%, var(--landing-hero-glow2), transparent 70%);
+  pointer-events: none;
+}
+
+.thank-you-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  background: var(--landing-card-bg);
+  border: 1px solid var(--landing-card-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  text-align: center;
+  box-shadow: var(--landing-shadow-card-hover);
+  backdrop-filter: blur(10px);
+  animation: thankFadeUp 0.6s ease-out;
+}
+
+@media (min-width: 640px) {
+  .thank-you-card {
+    padding: 3.5rem var(--space-2xl);
+  }
+}
+
+@keyframes thankFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .thank-you-card {
+    animation: none;
+  }
+}
+
+.thank-you-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--landing-accent);
+  margin-bottom: var(--space-xl);
+}
+
+.thank-you-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: var(--landing-accent-soft);
+  color: var(--landing-accent);
+  margin: 0 auto var(--space-lg);
+}
+
+.thank-you h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
+}
+
+@media (min-width: 640px) {
+  .thank-you h1 {
+    font-size: 2.25rem;
+  }
+}
+
+.thank-you-lead {
+  font-size: var(--font-size-md);
+  color: var(--landing-text-secondary);
+  line-height: 1.7;
+  margin: 0 auto var(--space-lg);
+  max-width: 440px;
+}
+
+.thank-you-note {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  background: var(--landing-accent-soft);
+  color: var(--landing-accent-text);
+  border: 1px solid rgba(33, 150, 243, 0.18);
+  border-radius: var(--radius-md);
+  padding: 0.75rem var(--space-md);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  line-height: 1.5;
+  margin-bottom: var(--space-xl);
+  max-width: 440px;
+}
+
+.thank-you-note strong {
+  color: var(--landing-text);
+}
+
+.thank-you-upcoming {
+  text-align: left;
+  background: var(--landing-card-hover);
+  border: 1px solid var(--landing-card-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.thank-you-upcoming h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--landing-accent);
+  margin-bottom: var(--space-md);
+}
+
+.thank-you-upcoming ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.thank-you-upcoming li {
+  font-size: var(--font-size-sm);
+  color: var(--landing-text-secondary);
+  padding-left: 1.25rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.thank-you-upcoming li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--landing-accent);
+}
+
+.thank-you-footer-line {
+  font-size: var(--font-size-sm);
+  color: var(--landing-text-muted);
+  margin-bottom: var(--space-xl);
+}
+
+.thank-you-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+@media (min-width: 480px) {
+  .thank-you-actions {
+    flex-direction: row;
+  }
+}
+
+.thank-you-actions .btn {
+  width: auto;
+}
