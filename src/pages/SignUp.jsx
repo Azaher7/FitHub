@@ -69,6 +69,8 @@ export default function SignUp() {
 
     setSubmitting(true);
     const { data, error } = await supabase.auth.signUp({
+      firstname: form.firstname,
+      lastname: form.lastname,
       email: form.email.trim(),
       password: form.password,
       options: {
@@ -87,6 +89,7 @@ export default function SignUp() {
     navigate('/thank-you', {
       replace: true,
       state: {
+        
         email: form.email.trim(),
         username: form.username.trim(),
         needsEmailConfirmation: !data?.session,
