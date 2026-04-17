@@ -8,6 +8,8 @@ export default function SignUp() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [form, setForm] = useState({
+    firstname: '',
+    lastname:,'',
     username: '',
     email: '',
     password: '',
