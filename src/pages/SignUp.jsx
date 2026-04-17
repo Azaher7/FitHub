@@ -8,6 +8,8 @@ export default function SignUp() {
   const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const [form, setForm] = useState({
+    firstname:'',
+    lastname:'',
     username: '',
     email: '',
     password: '',
@@ -142,13 +144,13 @@ export default function SignUp() {
                 className="form-input"
                 placeholder="John"
                 value={form.firstname}
-                onChange={update('first-name')}
+                onChange={update('firstname')}
                 required
                 minLength={3}
                 autoComplete="first name"
               />
             </div>
-            {errors.username && <span className="form-error">{errors.username}</span>}
+            {errors.firstname && <span className="form-error">{errors.firstname}</span>}
           </div>
 
           {/* Last-name */}
@@ -161,13 +163,13 @@ export default function SignUp() {
                 className="form-input"
                 placeholder="Smith"
                 value={form.lastname}
-                onChange={update('last-name')}
+                onChange={update('lastname')}
                 required
                 minLength={3}
                 autoComplete="last name"
               />
             </div>
-            {errors.username && <span className="form-error">{errors.username}</span>}
+            {errors.lastname && <span className="form-error">{errors.lastname}</span>}
           </div>
 
           {/* Username */}
