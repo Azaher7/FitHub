@@ -39,6 +39,11 @@
   --landing-star: #FF9800;
   --landing-footer-bg: #F0F0F0;
   --landing-check: #4CAF50;
+  --landing-hero-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.95) 100%);
+  --landing-hero-image-opacity: 0.35;
+  --landing-shadow-card: 0 4px 20px -6px rgba(33, 33, 33, 0.08);
+  --landing-shadow-card-hover: 0 12px 32px -8px rgba(33, 150, 243, 0.18);
+  --landing-image-border: rgba(33, 33, 33, 0.08);
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -118,6 +123,11 @@
   --landing-star: #FFC107;
   --landing-footer-bg: #0A0A0A;
   --landing-check: #66BB6A;
+  --landing-hero-overlay: linear-gradient(180deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.55) 40%, rgba(10, 10, 10, 0.95) 100%);
+  --landing-hero-image-opacity: 0.5;
+  --landing-shadow-card: 0 4px 20px -6px rgba(0, 0, 0, 0.5);
+  --landing-shadow-card-hover: 0 12px 32px -8px rgba(66, 165, 245, 0.25);
+  --landing-image-border: rgba(255, 255, 255, 0.06);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);

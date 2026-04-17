@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Dumbbell, Camera, Eye, EyeOff, User } from 'lucide-react';
+import { supabase, isSupabaseConfigured } from '../lib/supabase';
 import './Auth.css';
 
 export default function SignUp() {
@@ -16,6 +17,8 @@ export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const update = (field) => (e) => {
     setForm({ ...form, [field]: e.target.value });
@@ -50,11 +53,43 @@ export default function SignUp() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError('');
     if (!validate()) return;
-    // TODO: connect to backend
-    navigate('/dashboard');
+
+    if (!isSupabaseConfigured) {
+      setSubmitError(
+        'Signup is not configured yet. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env.local and restart the dev server.'
+      );
+      return;
+    }
+
+    setSubmitting(true);
+    const { data, error } = await supabase.auth.signUp({
+      email: form.email.trim(),
+      password: form.password,
+      options: {
+        data: {
+          username: form.username.trim(),
+        },
+      },
+    });
+    setSubmitting(false);
+
+    if (error) {
+      setSubmitError(error.message);
+      return;
+    }
+
+    navigate('/thank-you', {
+      replace: true,
+      state: {
+        email: form.email.trim(),
+        username: form.username.trim(),
+        needsEmailConfirmation: !data?.session,
+      },
+    });
   };
 
   return (
@@ -184,8 +219,18 @@ export default function SignUp() {
             {errors.confirmPassword && <span className="form-error">{errors.confirmPassword}</span>}
           </div>
 
-          <button type="submit" className="btn btn-primary auth-submit">
-            Create Account
+          {submitError && (
+            <div className="auth-submit-error" role="alert">
+              {submitError}
+            </div>
+          )}
+
+          <button
+            type="submit"
+            className="btn btn-primary auth-submit"
+            disabled={submitting}
+          >
+            {submitting ? 'Creating account…' : 'Create Account'}
           </button>
         </form>
 

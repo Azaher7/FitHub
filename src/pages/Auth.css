@@ -65,6 +65,23 @@
   margin-top: var(--space-md);
 }
 
+.auth-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.auth-submit-error {
+  background: rgba(244, 67, 54, 0.08);
+  border: 1px solid rgba(244, 67, 54, 0.25);
+  color: var(--color-danger);
+  border-radius: var(--radius-md);
+  padding: 0.75rem var(--space-md);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-md);
+  text-align: left;
+  line-height: 1.5;
+}
+
 /* Label row (label + forgot link) */
 .form-label-row {
   display: flex;

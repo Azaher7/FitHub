@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import AppLayout from './layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 import Landing from './pages/Landing';
+import About from './pages/About';
+import ThankYou from './pages/ThankYou';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -20,6 +22,8 @@ export default function App() {
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Landing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/thank-you" element={<ThankYou />} />
 
         {/* Auth routes */}
         <Route element={<AuthLayout />}>
