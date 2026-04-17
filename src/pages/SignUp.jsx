@@ -132,6 +132,44 @@ export default function SignUp() {
             {errors.photo && <span className="form-error">{errors.photo}</span>}
           </div>
 
+          {/* First-name */}
+          <div className="form-group">
+            <label className="form-label" htmlFor="firstname">First name</label>
+            <div className="input-wrapper">
+              <input
+                id="firstname"
+                type="text"
+                className="form-input"
+                placeholder="John"
+                value={form.firstname}
+                onChange={update('first-name')}
+                required
+                minLength={3}
+                autoComplete="first name"
+              />
+            </div>
+            {errors.username && <span className="form-error">{errors.username}</span>}
+          </div>
+
+          {/* Last-name */}
+          <div className="form-group">
+            <label className="form-label" htmlFor="lastname">Last name</label>
+            <div className="input-wrapper">
+              <input
+                id="lastname"
+                type="text"
+                className="form-input"
+                placeholder="Smith"
+                value={form.lastname}
+                onChange={update('last-name')}
+                required
+                minLength={3}
+                autoComplete="last name"
+              />
+            </div>
+            {errors.username && <span className="form-error">{errors.username}</span>}
+          </div>
+
           {/* Username */}
           <div className="form-group">
             <label className="form-label" htmlFor="username">Username</label>
