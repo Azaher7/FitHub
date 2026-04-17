@@ -89,7 +89,8 @@ export default function SignUp() {
     navigate('/thank-you', {
       replace: true,
       state: {
-        
+        firstname: form.firstname,
+        lastname: form.lastname,
         email: form.email.trim(),
         username: form.username.trim(),
         needsEmailConfirmation: !data?.session,
