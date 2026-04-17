@@ -1,10 +1,29 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Dumbbell, BarChart3, Clock, Zap, CheckCircle,
-  Star, Users, Trophy, ArrowRight, ChevronRight,
+  Star, Trophy, ArrowRight,
 } from 'lucide-react';
 import ThemeToggle from '../components/ThemeToggle';
+import DownloadButtons from '../components/DownloadButtons';
+import useScrollReveal from '../hooks/useScrollReveal';
 import './Landing.css';
+
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80&auto=format&fit=crop';
+const FEATURE_IMAGES = [
+  {
+    src: 'https://images.unsplash.com/photo-1599058917212-d750089bc07e?w=900&q=80&auto=format&fit=crop',
+    alt: 'Athlete performing a heavy barbell lift',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&q=80&auto=format&fit=crop',
+    alt: 'Rack of dumbbells in a modern gym',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800&q=80&auto=format&fit=crop',
+    alt: 'Woman training with kettlebells',
+  },
+];
 
 const features = [
   {
@@ -65,8 +84,11 @@ const steps = [
 ];
 
 export default function Landing() {
+  const rootRef = useRef(null);
+  useScrollReveal(rootRef);
+
   return (
-    <div className="landing">
+    <div className="landing" ref={rootRef}>
       {/* Header */}
       <header className="landing-header">
         <div className="landing-header-inner">
@@ -89,17 +111,20 @@ export default function Landing() {
 
       {/* Hero */}
       <section className="hero">
+        <div className="hero-image" aria-hidden="true" style={{ backgroundImage: `url(${HERO_IMAGE})` }} />
         <div className="hero-bg" />
         <div className="hero-content">
-          <span className="hero-badge">
+          <span className="hero-badge reveal" style={{ '--reveal-delay': '0ms' }}>
             <Trophy size={14} /> #1 Free Workout Tracker
           </span>
-          <h1>Your Workouts.<br />Your Progress.<br /><span className="hero-accent">Your Way.</span></h1>
-          <p>
+          <h1 className="reveal" style={{ '--reveal-delay': '80ms' }}>
+            Your Workouts.<br />Your Progress.<br /><span className="hero-accent">Your Way.</span>
+          </h1>
+          <p className="reveal" style={{ '--reveal-delay': '160ms' }}>
             The simplest, fastest way to log your training. Create templates, track every set,
             and never wonder what you lifted last time.
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions reveal" style={{ '--reveal-delay': '240ms' }}>
             <Link to="/signup" className="btn btn-primary btn-lg">
               Start Training Free <ArrowRight size={18} />
             </Link>
@@ -107,7 +132,11 @@ export default function Landing() {
               I Have an Account
             </Link>
           </div>
-          <div className="hero-proof">
+          <DownloadButtons
+            variant="hero"
+            className="hero-downloads reveal"
+          />
+          <div className="hero-proof reveal" style={{ '--reveal-delay': '400ms' }}>
             <div className="hero-avatars">
               <div className="hero-avatar">M</div>
               <div className="hero-avatar">S</div>
@@ -135,14 +164,31 @@ export default function Landing() {
       {/* Features */}
       <section className="features-section" id="features">
         <div className="section-container">
-          <div className="section-label">Features</div>
-          <h2 className="section-title">Everything you need.<br />Nothing you don't.</h2>
-          <p className="section-desc">
+          <div className="section-label reveal">Features</div>
+          <h2 className="section-title reveal" style={{ '--reveal-delay': '80ms' }}>
+            Everything you need.<br />Nothing you don't.
+          </h2>
+          <p className="section-desc reveal" style={{ '--reveal-delay': '160ms' }}>
             Built for people who actually lift. No calorie counters, no social feeds — just workout tracking done right.
           </p>
+          <div className="features-visual reveal" style={{ '--reveal-delay': '200ms' }}>
+            {FEATURE_IMAGES.map((img) => (
+              <img
+                key={img.src}
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            ))}
+          </div>
           <div className="features-grid">
-            {features.map((f) => (
-              <div key={f.title} className="feature-card">
+            {features.map((f, i) => (
+              <div
+                key={f.title}
+                className="feature-card reveal"
+                style={{ '--reveal-delay': `${i * 80}ms` }}
+              >
                 <div className="feature-icon-wrap">
                   <f.icon size={24} />
                 </div>
@@ -157,11 +203,17 @@ export default function Landing() {
       {/* How It Works */}
       <section className="how-section" id="how-it-works">
         <div className="section-container">
-          <div className="section-label">How It Works</div>
-          <h2 className="section-title">From zero to tracking<br />in under a minute.</h2>
+          <div className="section-label reveal">How It Works</div>
+          <h2 className="section-title reveal" style={{ '--reveal-delay': '80ms' }}>
+            From zero to tracking<br />in under a minute.
+          </h2>
           <div className="steps-grid">
-            {steps.map((step) => (
-              <div key={step.num} className="step-card">
+            {steps.map((step, i) => (
+              <div
+                key={step.num}
+                className="step-card reveal"
+                style={{ '--reveal-delay': `${i * 80}ms` }}
+              >
                 <span className="step-num">{step.num}</span>
                 <h3>{step.title}</h3>
                 <p>{step.desc}</p>
@@ -173,15 +225,22 @@ export default function Landing() {
 
       {/* Testimonials */}
       <section className="testimonials-section" id="testimonials">
+        <div className="testimonials-bg" aria-hidden="true" />
         <div className="section-container">
-          <div className="section-label">Reviews</div>
-          <h2 className="section-title">Loved by lifters<br />everywhere.</h2>
+          <div className="section-label reveal">Reviews</div>
+          <h2 className="section-title reveal" style={{ '--reveal-delay': '80ms' }}>
+            Loved by lifters<br />everywhere.
+          </h2>
           <div className="testimonials-grid">
-            {testimonials.map((t) => (
-              <div key={t.name} className="testimonial-card">
+            {testimonials.map((t, i) => (
+              <div
+                key={t.name}
+                className="testimonial-card reveal"
+                style={{ '--reveal-delay': `${i * 100}ms` }}
+              >
                 <div className="testimonial-stars">
-                  {Array.from({ length: t.rating }).map((_, i) => (
-                    <Star key={i} size={16} fill="currentColor" />
+                  {Array.from({ length: t.rating }).map((_, idx) => (
+                    <Star key={idx} size={16} fill="currentColor" />
                   ))}
                 </div>
                 <p className="testimonial-text">"{t.text}"</p>
@@ -201,14 +260,16 @@ export default function Landing() {
       {/* CTA */}
       <section className="cta-section">
         <div className="section-container">
-          <h2>Ready to get stronger?</h2>
-          <p>Join thousands of lifters already tracking smarter with FitHub.</p>
-          <div className="cta-actions">
+          <h2 className="reveal">Ready to get stronger?</h2>
+          <p className="reveal" style={{ '--reveal-delay': '80ms' }}>
+            Join thousands of lifters already tracking smarter with FitHub.
+          </p>
+          <div className="cta-actions reveal" style={{ '--reveal-delay': '160ms' }}>
             <Link to="/signup" className="btn btn-primary btn-lg">
               Create Free Account <ArrowRight size={18} />
             </Link>
           </div>
-          <div className="cta-perks">
+          <div className="cta-perks reveal" style={{ '--reveal-delay': '240ms' }}>
             <span><CheckCircle size={16} /> Free forever</span>
             <span><CheckCircle size={16} /> No credit card</span>
             <span><CheckCircle size={16} /> Works on any device</span>
@@ -225,6 +286,7 @@ export default function Landing() {
               <span>FitHub</span>
             </div>
             <p>Simple workout tracking for serious lifters.</p>
+            <DownloadButtons variant="footer" className="footer-downloads" />
           </div>
           <div className="footer-links">
             <div className="footer-col">
