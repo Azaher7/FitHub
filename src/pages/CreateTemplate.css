@@ -1,0 +1,425 @@
+/* ========================================
+   CREATE TEMPLATE PAGE
+   ======================================== */
+
+.create-template-page {
+  padding-bottom: 100px;
+}
+
+/* ---------- Header ---------- */
+.ct-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.ct-back-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.ct-back-btn:hover {
+  background: var(--color-border-light);
+}
+
+.ct-header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.ct-header-center h1 {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.ct-save-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: white;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+  flex-shrink: 0;
+}
+
+.ct-save-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.ct-save-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Name & Notes ---------- */
+.ct-name-section {
+  margin-bottom: var(--space-lg);
+}
+
+.ct-name-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  padding: var(--space-sm) 0;
+  border-bottom: 2px solid var(--color-border);
+  transition: border-color 0.2s;
+}
+
+.ct-name-input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.ct-name-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.ct-notes-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  padding: var(--space-sm) 0;
+  margin-top: var(--space-xs);
+}
+
+.ct-notes-input:focus {
+  outline: none;
+}
+
+.ct-notes-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Summary ---------- */
+.ct-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  margin-bottom: var(--space-xl);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-md);
+}
+
+.ct-summary-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-text-muted);
+}
+
+/* ---------- Empty State ---------- */
+.ct-empty {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-lg);
+  background: var(--color-surface);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-lg);
+}
+
+.ct-empty-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-md);
+}
+
+.ct-empty h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.ct-empty p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ---------- Exercise Cards ---------- */
+.ct-exercises {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.ct-exercise-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Exercise Header */
+.ct-exercise-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+}
+
+.ct-exercise-drag {
+  color: var(--color-text-muted);
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 4px 0;
+}
+
+.ct-exercise-num {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ct-exercise-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.ct-exercise-title h3 {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ct-exercise-meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.ct-exercise-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ct-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+
+.ct-icon-btn:hover {
+  background: var(--color-border-light);
+  color: var(--color-text-secondary);
+}
+
+.ct-icon-btn-danger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+}
+
+/* Sets Table */
+.ct-sets {
+  padding: 0 var(--space-md);
+}
+
+.ct-sets-header {
+  display: grid;
+  grid-template-columns: 36px 1fr 1fr 32px;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.ct-set-row {
+  display: grid;
+  grid-template-columns: 36px 1fr 1fr 32px;
+  gap: var(--space-sm);
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.ct-set-row:last-child {
+  border-bottom: none;
+}
+
+.ct-set-num {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.ct-set-input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
+}
+
+.ct-set-input::-webkit-inner-spin-button,
+.ct-set-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ct-set-input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.ct-set-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.ct-set-remove {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.ct-set-remove:hover:not(:disabled) {
+  color: var(--color-danger);
+}
+
+.ct-set-remove:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+/* Add Set Button */
+.ct-add-set-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: var(--color-border-light);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.ct-add-set-btn:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+/* ---------- Add Exercise Button ---------- */
+.ct-add-exercise-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: var(--space-md);
+  margin-top: var(--space-md);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  color: var(--color-primary);
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.ct-add-exercise-btn:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+/* ---------- Bottom Save Bar ---------- */
+.ct-bottom-bar {
+  position: fixed;
+  bottom: var(--bottom-nav-height);
+  left: 0;
+  right: 0;
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 50;
+}
+
+@media (min-width: 768px) {
+  .ct-bottom-bar {
+    bottom: 0;
+  }
+}
+
+.ct-bottom-save {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.ct-bottom-save:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

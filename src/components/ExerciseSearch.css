@@ -1,0 +1,116 @@
+.exercise-search-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .exercise-search-overlay {
+    align-items: center;
+  }
+}
+
+.exercise-search-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  width: 100%;
+  max-width: var(--max-width);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .exercise-search-modal {
+    border-radius: var(--radius-xl);
+    max-height: 600px;
+  }
+}
+
+.exercise-search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.exercise-search-header h3 {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+}
+
+.exercise-search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.exercise-search-input {
+  flex: 1;
+  border: none;
+  padding: var(--space-sm) 0;
+  font-size: var(--font-size-md);
+  background: transparent;
+}
+
+.exercise-category-filters {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.exercise-category-filters .badge {
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+}
+
+.exercise-category-filters .badge.badge-primary {
+  border-color: var(--color-primary);
+}
+
+.exercise-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.exercise-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  background: none;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border-light);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.exercise-list-item:hover {
+  background: var(--color-bg);
+}
+
+.exercise-name {
+  font-weight: 500;
+  font-size: var(--font-size-md);
+}
+
+.exercise-meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}

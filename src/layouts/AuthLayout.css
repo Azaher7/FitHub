@@ -1,0 +1,15 @@
+.auth-layout {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-primary-light), transparent);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 440px;
+}

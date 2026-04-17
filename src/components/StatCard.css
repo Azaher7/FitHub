@@ -1,0 +1,39 @@
+/* ========================================
+   REUSABLE STAT CARD
+   ======================================== */
+
+.scard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-md) var(--space-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.scard-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scard-value {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-text);
+  line-height: 1;
+}
+
+.scard-label {
+  font-size: 10px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
