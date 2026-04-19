@@ -45,6 +45,12 @@ export default function SignUp() {
 
   const validate = () => {
     const newErrors = {};
+    if (form.firstname.trim().length < 2) {
+      newErrors.firstname = 'First name is required';
+    }
+    if (form.lastname.trim().length < 2) {
+      newErrors.lastname = 'Last name is required';
+    }
     if (form.username.trim().length < 3) {
       newErrors.username = 'Username must be at least 3 characters';
     }
@@ -67,32 +73,51 @@ export default function SignUp() {
       return;
     }
 
+    const firstname = form.firstname.trim();
+    const lastname = form.lastname.trim();
+    const username = form.username.trim();
+    const email = form.email.trim();
+
     setSubmitting(true);
     const { data, error } = await supabase.auth.signUp({
-      firstname: form.firstname,
-      lastname: form.lastname,
-      email: form.email.trim(),
+      email,
       password: form.password,
       options: {
+        emailRedirectTo: `${window.location.origin}/auth/confirm`,
         data: {
-          username: form.username.trim(),
+          firstname,
+          lastname,
+          username,
+          full_name: `${firstname} ${lastname}`.trim(),
         },
       },
     });
     setSubmitting(false);
 
     if (error) {
-      setSubmitError(error.message);
+      const msg = error.message || '';
+      if (/already registered|already exists|user exists/i.test(msg)) {
+        navigate('/already-signed-up', { replace: true, state: { email } });
+        return;
+      }
+      setSubmitError(msg || 'Something went wrong. Please try again.');
+      return;
+    }
+
+    // Supabase obscures duplicate emails by returning a user with an empty
+    // identities array instead of an error. Treat that as "already signed up".
+    if (data?.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) {
+      navigate('/already-signed-up', { replace: true, state: { email } });
       return;
     }
 
     navigate('/thank-you', {
       replace: true,
       state: {
-        firstname: form.firstname,
-        lastname: form.lastname,
-        email: form.email.trim(),
-        username: form.username.trim(),
+        firstname,
+        lastname,
+        email,
+        username,
         needsEmailConfirmation: !data?.session,
       },
     });
@@ -145,13 +170,12 @@ export default function SignUp() {
               <input
                 id="firstname"
                 type="text"
-                className="form-input"
+                className={`form-input ${errors.firstname ? 'form-input-error' : ''}`}
                 placeholder="John"
                 value={form.firstname}
                 onChange={update('firstname')}
                 required
-                minLength={3}
-                autoComplete="first name"
+                autoComplete="given-name"
               />
             </div>
             {errors.firstname && <span className="form-error">{errors.firstname}</span>}
@@ -164,13 +188,12 @@ export default function SignUp() {
               <input
                 id="lastname"
                 type="text"
-                className="form-input"
+                className={`form-input ${errors.lastname ? 'form-input-error' : ''}`}
                 placeholder="Smith"
                 value={form.lastname}
                 onChange={update('lastname')}
                 required
-                minLength={3}
-                autoComplete="last name"
+                autoComplete="family-name"
               />
             </div>
             {errors.lastname && <span className="form-error">{errors.lastname}</span>}

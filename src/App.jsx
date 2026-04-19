@@ -6,6 +6,8 @@ import About from './pages/About';
 import ThankYou from './pages/ThankYou';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import AuthConfirm from './pages/AuthConfirm';
+import AlreadySignedUp from './pages/AlreadySignedUp';
 import Dashboard from './pages/Dashboard';
 import Templates from './pages/Templates';
 import CreateTemplate from './pages/CreateTemplate';
@@ -29,6 +31,8 @@ export default function App() {
         <Route element={<AuthLayout />}>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/auth/confirm" element={<AuthConfirm />} />
+          <Route path="/already-signed-up" element={<AlreadySignedUp />} />
         </Route>
 
         {/* App routes (authenticated) */}

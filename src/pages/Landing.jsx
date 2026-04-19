@@ -174,7 +174,7 @@ export default function Landing() {
             Everything you need.<br />Nothing you don't.
           </h2>
           <p className="section-desc reveal" style={{ '--reveal-delay': '160ms' }}>
-            Built for people who actually lift. No calorie counters, no social feeds — just workout tracking done right.
+            Made for people who actually lift. Fast to log, easy to read, yours to keep.
           </p>
           <div className="features-visual reveal" style={{ '--reveal-delay': '200ms' }}>
             {FEATURE_IMAGES.map((img, i) => (

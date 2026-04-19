@@ -116,14 +116,12 @@ export default function About() {
               Help every athlete train with clarity, confidence, and consistency.
             </h2>
             <p className="reveal" style={{ '--reveal-delay': '160ms' }}>
-              We believe fitness apps have gotten too noisy. Social feeds, streak pressure, endless
-              notifications — all of it pulls attention away from the actual work. FitHub is built
-              the opposite way: start with the lift, measure what matters, and fade into the background
-              the moment you're done.
+              Most fitness apps get in your way. FitHub stays out of it — start your session,
+              log what you lifted, get back to training.
             </p>
             <p className="reveal" style={{ '--reveal-delay': '220ms' }}>
-              Over time, we're layering intelligent coaching, nutrition, and AI support on top of that
-              foundation — so your training gets smarter as you do.
+              Coaching, nutrition, and AI support are on the way, built on the same principle:
+              useful when you need it, quiet when you don't.
             </p>
             <ul className="about-mission-list reveal" style={{ '--reveal-delay': '280ms' }}>
               <li><CheckCircle size={18} /> Make tracking effortless</li>

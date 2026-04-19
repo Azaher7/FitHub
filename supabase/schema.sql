@@ -34,7 +34,7 @@ create policy "Users can update their own profile"
   using (auth.uid() = id);
 
 -- 3. Trigger: when a new auth.users row is created, insert a matching profile
--- using the username supplied in user_metadata at signup.
+-- using the username, firstname, and lastname supplied in user_metadata at signup.
 create or replace function public.handle_new_user()
 returns trigger
 language plpgsql
@@ -42,10 +42,12 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, username)
+  insert into public.profiles (id, username, firstname, lastname)
   values (
     new.id,
-    coalesce(new.raw_user_meta_data->>'username', split_part(new.email, '@', 1))
+    coalesce(new.raw_user_meta_data->>'username', split_part(new.email, '@', 1)),
+    coalesce(new.raw_user_meta_data->>'firstname', ''),
+    coalesce(new.raw_user_meta_data->>'lastname', '')
   );
   return new;
 end;
