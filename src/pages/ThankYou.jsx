@@ -5,8 +5,6 @@ import './ThankYou.css';
 export default function ThankYou() {
   const { state } = useLocation();
   const firstname = state?.firstname;
-  const lastname = state?.lastname;
-  const username = state?.username;
   const email = state?.email;
   const needsEmailConfirmation = state?.needsEmailConfirmation ?? true;
 
@@ -23,16 +21,16 @@ export default function ThankYou() {
           <CheckCircle size={40} strokeWidth={2.25} />
         </div>
 
-        <h1>Thanks{firstname ? `, ${firstname}` : ''} — you're in.</h1>
+        <h1>Thank you{firstname ? `, ${firstname}` : ''}.</h1>
         <p className="thank-you-lead">
-          Your FitHub account has been created. You're officially part of our early-access community.
+          Please confirm your email to activate your account.
         </p>
 
         {needsEmailConfirmation && email && (
           <div className="thank-you-note" role="status">
             <Mail size={16} />
             <span>
-              We sent a confirmation link to <strong>{email}</strong>. Click it to activate your account.
+              We sent a link to <strong>{email}</strong>. Click it and you're in.
             </span>
           </div>
         )}
@@ -51,7 +49,7 @@ export default function ThankYou() {
         </div>
 
         <p className="thank-you-footer-line">
-          More FitHub features are on the way. We'll email you when your account unlocks new tools.
+          We'll email you as new features unlock.
         </p>
 
         <div className="thank-you-actions">

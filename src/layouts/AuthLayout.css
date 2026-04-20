@@ -1,12 +1,39 @@
 .auth-layout {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space-lg);
   background: var(--color-bg);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.auth-layout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -20%, var(--color-primary-light), transparent);
+    url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.18;
+  z-index: -2;
+}
+
+.auth-layout::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -10%, var(--color-primary-light), transparent 70%),
+    linear-gradient(180deg, transparent 0%, var(--color-bg) 85%);
+  z-index: -1;
+}
+
+[data-theme="dark"] .auth-layout::before {
+  opacity: 0.28;
 }
 
 .auth-container {

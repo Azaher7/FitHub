@@ -1,21 +1,8 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Dumbbell, Eye, EyeOff } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Dumbbell, Lock } from 'lucide-react';
 import './Auth.css';
 
 export default function Login() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ email: '', password: '' });
-  const [showPassword, setShowPassword] = useState(false);
-
-  const update = (field) => (e) => setForm({ ...form, [field]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: connect to backend
-    navigate('/dashboard');
-  };
-
   return (
     <div className="auth-page">
       <div className="auth-card">
@@ -23,66 +10,24 @@ export default function Login() {
           <Dumbbell size={32} />
           <h1>FitHub</h1>
         </div>
-        <h2>Welcome back</h2>
-        <p className="auth-subtitle">Log in to continue your training</p>
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          {/* Email */}
-          <div className="form-group">
-            <label className="form-label" htmlFor="email">Email</label>
-            <input
-              id="email"
-              type="email"
-              className="form-input"
-              placeholder="you@example.com"
-              value={form.email}
-              onChange={update('email')}
-              required
-              autoComplete="email"
-            />
-          </div>
+        <div className="auth-status-icon auth-status-icon-neutral">
+          <Lock size={28} />
+        </div>
 
-          {/* Password */}
-          <div className="form-group">
-            <div className="form-label-row">
-              <label className="form-label" htmlFor="password">Password</label>
-              <button type="button" className="form-link" tabIndex={-1}>
-                Forgot password?
-              </button>
-            </div>
-            <div className="input-wrapper">
-              <input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                className="form-input input-with-icon"
-                placeholder="Enter your password"
-                value={form.password}
-                onChange={update('password')}
-                required
-                autoComplete="current-password"
-              />
-              <button
-                type="button"
-                className="input-icon-btn"
-                onClick={() => setShowPassword(!showPassword)}
-                tabIndex={-1}
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </button>
-            </div>
-          </div>
+        <h2>Log in is coming soon.</h2>
+        <p className="auth-subtitle">
+          We're finishing the app. For now, sign up for early access and we'll email you the moment it opens.
+        </p>
 
-          <button type="submit" className="btn btn-primary auth-submit">
-            Log In
-          </button>
-        </form>
+        <Link to="/signup" className="btn btn-primary auth-submit">Sign up for early access</Link>
 
         <div className="auth-divider">
           <span>or</span>
         </div>
 
         <p className="auth-footer">
-          Don't have an account? <Link to="/signup">Sign up</Link>
+          <Link to="/">Back to home</Link>
         </p>
       </div>
     </div>
