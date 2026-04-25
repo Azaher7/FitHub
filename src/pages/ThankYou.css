@@ -100,7 +100,7 @@
   gap: var(--space-sm);
   background: var(--landing-accent-soft);
   color: var(--landing-accent-text);
-  border: 1px solid rgba(33, 150, 243, 0.18);
+  border: 1px solid rgba(31, 157, 107, 0.22);
   border-radius: var(--radius-md);
   padding: 0.75rem var(--space-md);
   font-size: var(--font-size-sm);

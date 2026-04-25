@@ -1,10 +1,10 @@
 :root {
-  /* Colors — Hevy-inspired blue theme */
-  --color-primary: #2196F3;
-  --color-primary-hover: #1976D2;
-  --color-primary-light: #E3F2FD;
-  --color-secondary: #4CD09B;
-  --color-secondary-hover: #3FBA89;
+  /* Colors — refreshed emerald theme */
+  --color-primary: #1F9D6B;
+  --color-primary-hover: #188458;
+  --color-primary-light: rgba(31, 157, 107, 0.14);
+  --color-secondary: #72C98F;
+  --color-secondary-hover: #5DB57A;
   --color-danger: #F44336;
   --color-danger-hover: #D32F2F;
   --color-warning: #FF9800;
@@ -28,21 +28,21 @@
   --landing-card-bg: rgba(33, 33, 33, 0.03);
   --landing-card-border: rgba(33, 33, 33, 0.06);
   --landing-card-hover: rgba(33, 33, 33, 0.06);
-  --landing-accent: #2196F3;
-  --landing-accent-soft: rgba(33, 150, 243, 0.1);
-  --landing-accent-text: #42A5F5;
+  --landing-accent: #1F9D6B;
+  --landing-accent-soft: rgba(31, 157, 107, 0.12);
+  --landing-accent-text: #22B277;
   --landing-header-bg: rgba(255, 255, 255, 0.85);
-  --landing-hero-glow1: rgba(33, 150, 243, 0.1);
-  --landing-hero-glow2: rgba(33, 150, 243, 0.05);
-  --landing-avatar-bg: #E3F2FD;
-  --landing-step-num: rgba(33, 150, 243, 0.15);
+  --landing-hero-glow1: rgba(31, 157, 107, 0.12);
+  --landing-hero-glow2: rgba(31, 157, 107, 0.08);
+  --landing-avatar-bg: rgba(31, 157, 107, 0.14);
+  --landing-step-num: rgba(31, 157, 107, 0.2);
   --landing-star: #FF9800;
   --landing-footer-bg: #F0F0F0;
-  --landing-check: #4CD09B;
+  --landing-check: #72C98F;
   --landing-hero-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.45) 40%, rgba(255, 255, 255, 0.92) 100%);
   --landing-hero-image-opacity: 0.55;
   --landing-shadow-card: 0 4px 20px -6px rgba(33, 33, 33, 0.08);
-  --landing-shadow-card-hover: 0 12px 32px -8px rgba(33, 150, 243, 0.18);
+  --landing-shadow-card-hover: 0 12px 32px -8px rgba(31, 157, 107, 0.24);
   --landing-image-border: rgba(33, 33, 33, 0.08);
 
   /* Spacing */
@@ -83,13 +83,13 @@
   --bottom-nav-height: 64px;
 }
 
-/* Dark Mode — Hevy-style dark with blue accents */
+/* Dark Mode — emerald accents */
 [data-theme="dark"] {
-  --color-primary: #42A5F5;
-  --color-primary-hover: #2196F3;
-  --color-primary-light: rgba(66, 165, 245, 0.12);
-  --color-secondary: #4CD09B;
-  --color-secondary-hover: #63D9AD;
+  --color-primary: #34B77F;
+  --color-primary-hover: #49C58F;
+  --color-primary-light: rgba(52, 183, 127, 0.2);
+  --color-secondary: #72C98F;
+  --color-secondary-hover: #88D6A3;
   --color-danger: #EF5350;
   --color-danger-hover: #F44336;
   --color-warning: #FFA726;
@@ -112,21 +112,21 @@
   --landing-card-bg: rgba(255, 255, 255, 0.03);
   --landing-card-border: rgba(255, 255, 255, 0.06);
   --landing-card-hover: rgba(255, 255, 255, 0.05);
-  --landing-accent: #42A5F5;
-  --landing-accent-soft: rgba(66, 165, 245, 0.12);
-  --landing-accent-text: #64B5F6;
+  --landing-accent: #34B77F;
+  --landing-accent-soft: rgba(52, 183, 127, 0.16);
+  --landing-accent-text: #5BD19C;
   --landing-header-bg: rgba(10, 10, 10, 0.85);
-  --landing-hero-glow1: rgba(66, 165, 245, 0.15);
-  --landing-hero-glow2: rgba(66, 165, 245, 0.08);
+  --landing-hero-glow1: rgba(52, 183, 127, 0.2);
+  --landing-hero-glow2: rgba(52, 183, 127, 0.12);
   --landing-avatar-bg: #1A1A2E;
-  --landing-step-num: rgba(66, 165, 245, 0.25);
+  --landing-step-num: rgba(52, 183, 127, 0.28);
   --landing-star: #FFC107;
   --landing-footer-bg: #0A0A0A;
-  --landing-check: #4CD09B;
+  --landing-check: #72C98F;
   --landing-hero-overlay: linear-gradient(180deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.55) 40%, rgba(10, 10, 10, 0.95) 100%);
   --landing-hero-image-opacity: 0.5;
   --landing-shadow-card: 0 4px 20px -6px rgba(0, 0, 0, 0.5);
-  --landing-shadow-card-hover: 0 12px 32px -8px rgba(66, 165, 245, 0.25);
+  --landing-shadow-card-hover: 0 12px 32px -8px rgba(52, 183, 127, 0.3);
   --landing-image-border: rgba(255, 255, 255, 0.06);
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);

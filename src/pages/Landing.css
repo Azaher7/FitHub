@@ -521,7 +521,7 @@
   inset: 0;
   background:
     linear-gradient(180deg, rgba(10, 10, 10, 0.55) 0%, rgba(10, 10, 10, 0.75) 100%),
-    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(33, 150, 243, 0.35), transparent 70%);
+    radial-gradient(ellipse 60% 50% at 50% 100%, rgba(52, 183, 127, 0.35), transparent 70%);
   z-index: 1;
 }
 
