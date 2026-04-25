@@ -23,14 +23,14 @@ export default function ThankYou() {
 
         <h1>Thank you{firstname ? `, ${firstname}` : ''}.</h1>
         <p className="thank-you-lead">
-          Please confirm your email to activate your account.
+          Check your inbox and confirm your email to activate your account.
         </p>
 
         {needsEmailConfirmation && email && (
           <div className="thank-you-note" role="status">
             <Mail size={16} />
             <span>
-              We sent a link to <strong>{email}</strong>. Click it and you're in.
+              We sent a secure confirmation link to <strong>{email}</strong>. Open it to finish signup, then you'll be redirected into FitHub.
             </span>
           </div>
         )}
