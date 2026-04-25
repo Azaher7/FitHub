@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 export default function useTheme() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('fithub-theme');
-    if (saved) return saved;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    if (saved === 'light' || saved === 'dark') return saved;
+    return 'dark';
   });
 
   useEffect(() => {

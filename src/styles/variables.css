@@ -39,8 +39,8 @@
   --landing-star: #FF9800;
   --landing-footer-bg: #F0F0F0;
   --landing-check: #4CAF50;
-  --landing-hero-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.7) 40%, rgba(255, 255, 255, 0.95) 100%);
-  --landing-hero-image-opacity: 0.35;
+  --landing-hero-overlay: linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.45) 40%, rgba(255, 255, 255, 0.92) 100%);
+  --landing-hero-image-opacity: 0.55;
   --landing-shadow-card: 0 4px 20px -6px rgba(33, 33, 33, 0.08);
   --landing-shadow-card-hover: 0 12px 32px -8px rgba(33, 150, 243, 0.18);
   --landing-image-border: rgba(33, 33, 33, 0.08);
