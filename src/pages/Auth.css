@@ -118,11 +118,64 @@
 
 .auth-submit {
   margin-top: var(--space-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  flex: 1;
 }
 
 .auth-submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+/* Multi-step navigation */
+.auth-step-actions {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.auth-step-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  flex: 0 0 auto;
+  min-width: 96px;
+}
+
+.auth-step-actions .auth-submit {
+  margin-top: 0;
+}
+
+/* Stepper progress dots */
+.auth-stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.auth-stepper-dot {
+  width: 32px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  transition: background 0.2s, width 0.2s;
+}
+
+.auth-stepper-dot.is-current {
+  background: var(--color-primary);
+  width: 48px;
+}
+
+.auth-stepper-dot.is-done {
+  background: var(--color-primary);
+  opacity: 0.55;
 }
 
 .auth-submit-error {
