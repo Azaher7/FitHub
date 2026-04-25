@@ -6,7 +6,7 @@ import About from './pages/About';
 import ThankYou from './pages/ThankYou';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
-import AuthConfirm from './pages/AuthConfirm';
+import AuthCallback from './pages/AuthCallback';
 import AlreadySignedUp from './pages/AlreadySignedUp';
 import Dashboard from './pages/Dashboard';
 import Templates from './pages/Templates';
@@ -31,7 +31,8 @@ export default function App() {
         <Route element={<AuthLayout />}>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/auth/confirm" element={<AuthConfirm />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/auth/confirm" element={<Navigate to="/auth/callback" replace />} />
           <Route path="/already-signed-up" element={<AlreadySignedUp />} />
         </Route>
 
